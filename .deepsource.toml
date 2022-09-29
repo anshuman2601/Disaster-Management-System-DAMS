@@ -5,13 +5,6 @@ name = "sql"
 enabled = true
 
 [[analyzers]]
-name = "python"
-enabled = true
-
-  [analyzers.meta]
-  runtime_version = "3.x.x"
-
-[[analyzers]]
 name = "javascript"
 enabled = true
 
@@ -20,4 +13,8 @@ enabled = true
 
 [[analyzers]]
 name = "test-coverage"
+enabled = true
+
+[[transformers]]
+name = "prettier"
 enabled = true
