@@ -44,9 +44,9 @@ function Projects() {
       open={Boolean(menu)}
       onClose={closeMenu}
     >
-      <MenuItem onClick={closeMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMenu}>Something else</MenuItem>
+      <MenuItem onClick={closeMenu}>Show Donors</MenuItem>
+      <MenuItem onClick={closeMenu}>Show Recipients</MenuItem>
+      <MenuItem onClick={closeMenu}>Connect to Admin</MenuItem>
     </Menu>
   );
 
@@ -54,8 +54,8 @@ function Projects() {
     <Card>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h6" gutterBottom>
-            Projects
+          <MDTypography variant="h5" gutterBottom>
+            List of Disasters
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Icon

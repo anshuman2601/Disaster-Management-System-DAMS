@@ -22,6 +22,15 @@ const borders = {
     5: pxToRem(5),
   },
 
+  borderHeight: {
+    0: 0,
+    1: pxToRem(1),
+    2: pxToRem(2),
+    3: pxToRem(3),
+    4: pxToRem(4),
+    5: pxToRem(5),
+  },
+
   borderRadius: {
     xs: pxToRem(1.6),
     sm: pxToRem(2),
