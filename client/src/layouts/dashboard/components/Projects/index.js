@@ -65,7 +65,7 @@ function Projects() {
                 mt: -0.5,
               }}
             >
-              done
+              done // the completed tick mark
             </Icon>
             <MDTypography variant="button" fontWeight="regular" color="text">
               &nbsp;<strong>30 done</strong> this month
