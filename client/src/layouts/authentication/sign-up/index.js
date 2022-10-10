@@ -64,21 +64,21 @@ function Cover() {
           <MDBox component="form" role="form" sx={{ minWidth: 120 }}>
             <Box border={20} borderColor="white" boxShadow="white" bgcolor="white" color="white">
               <FormControl fullWidth>
-              <InputLabel variant="outlined" id="AccountType">
-                Account Type
-              </InputLabel>
-              <Select
-                labelId="AccountTypeLabel"
-                id="AccountTypeId"
-                value={AccountType}
-                label="Account Type"
-                onChange={handleChange}
-                mb={50}
-              >
-                <MenuItem value="Admin">Admin</MenuItem>
-                <MenuItem value="Donor">Donor</MenuItem>
-                <MenuItem value="Recipient">Recipient</MenuItem>
-              </Select>
+                <InputLabel variant="outlined" id="AccountType">
+                  Account Type
+                </InputLabel>
+                <Select
+                  labelId="AccountTypeLabel"
+                  id="AccountTypeId"
+                  value={AccountType}
+                  label="Account Type"
+                  onChange={handleChange}
+                  mb={50}
+                >
+                  <MenuItem value="Admin">Admin</MenuItem>
+                  <MenuItem value="Donor">Donor</MenuItem>
+                  <MenuItem value="Recipient">Recipient</MenuItem>
+                </Select>
               </FormControl>
             </Box>
             <MDBox mb={2}>
