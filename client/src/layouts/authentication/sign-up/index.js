@@ -4,9 +4,9 @@ import { Container, Typography, Link, Box, Divider } from "@mui/material";
 import styled from "@emotion/styled";
 
 import { motion } from "framer-motion";
+import Logo from "components/Logo";
 import SocialAuth from "../components/SocialAuth";
 import SignupForm from "../components/SignupForm";
-import Logo from "../components/Logo";
 
 const RootStyle = styled("div")({
   background: "rgb(249, 250, 251)",
@@ -80,11 +80,11 @@ function Signup({ setAuth }) {
             sx={{ color: "text.secondary", mt: 2 }}
           >
             By registering, I agree to{" "}
-            <Link underline="always" color="text.primary" href="#">
+            <Link underline="always" color="text.primary" href="google.com">
               Terms of Service
             </Link>{" "}
             &{" "}
-            <Link underline="always" color="text.primary" href="#">
+            <Link underline="always" color="text.primary" href="google.com">
               Privacy Policy
             </Link>
             .

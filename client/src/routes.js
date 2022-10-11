@@ -26,7 +26,8 @@
   10. The `component` key is used to store the component of its route.
 */
 
-// DAMS React layouts
+// @mui material components
+import Icon from "@mui/material/Icon";
 import Dashboard from "./layouts/dashboard";
 import Profile from "./layouts/profile";
 import SignIn from "./layouts/authentication/sign-in";
@@ -34,9 +35,6 @@ import SignUp from "./layouts/authentication/sign-up";
 // import Home from "./pages/Home";
 // import Login from "./pages/Login";
 // import Signup from "./pages/Signup";
-
-// @mui icons
-import Icon from "@mui/material/Icon";
 
 const routes = [
   {

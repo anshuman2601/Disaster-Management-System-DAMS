@@ -1,115 +1,91 @@
-/**
-=========================================================
-* Disaster Response App
-=========================================================
-*/
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Container, Typography, Link, Box, Divider } from "@mui/material";
+import styled from "@emotion/styled";
+import LoginForm from "../components/LoginForm";
+import SocialAuth from "../components/SocialAuth";
+import Logo from "components/Logo";
+import { motion } from "framer-motion";
 
-import { useState } from "react";
+//////////////////////////////////
+const RootStyle = styled("div")({
+  background: "rgb(249, 250, 251)",
+  height: "100vh",
+  display: "grid",
+  placeItems: "center",
+});
 
-// react-router-dom components
-import { Link } from "react-router-dom";
+const HeadingStyle = styled(Box)({
+  textAlign: "center",
+});
 
-// @mui material components
-import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
+const ContentStyle = styled("div")({
+  maxWidth: 480,
+  padding: 25,
+  margin: "auto",
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  background: "#fff",
+});
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
+let easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    y: 60,
+    opacity: 0,
+    transition: { duration: 0.6, ease: easing },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
 
-// Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-
-function Basic() {
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
-
+const Login = ({ setAuth }) => {
   return (
-    <Card>
-      <Box
-        variant="gradient"
-        bgColor="info"
-        borderRadius="lg"
-        coloredShadow="info"
-        mx={2}
-        mt={-3}
-        p={2}
-        mb={1}
-        textAlign="center"
-      >
-        <Typography variant="h4" fontWeight="medium" color="white" mt={1}>
-          Sign in
-        </Typography>
-        <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-          <Grid item xs={2}>
-            <Typography component={MuiLink} href="#" variant="body1" color="white">
-              <FacebookIcon color="inherit" />
+    <RootStyle>
+      <Container maxWidth="sm">
+        <ContentStyle>
+          <HeadingStyle component={motion.div} {...fadeInUp}>
+            <Logo />
+            <Typography sx={{ color: "text.secondary", mb: 5 }}>
+              Login to your account
             </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography component={MuiLink} href="#" variant="body1" color="white">
-              <GitHubIcon color="inherit" />
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography component={MuiLink} href="#" variant="body1" color="white">
-              <GoogleIcon color="inherit" />
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box pt={4} pb={3} px={3}>
-        <Box component="form" role="form">
-          <Box mb={2}>
-            <Input type="email" label="Username" fullWidth />
-          </Box>
-          <Box mb={2}>
-            <Input type="password" label="Password" fullWidth />
-          </Box>
-          <Box display="flex" alignItems="center" ml={-1}>
-            <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-            <Typography
-              variant="button"
-              fontWeight="regular"
-              color="text"
-              onClick={handleSetRememberMe}
-              sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-            >
-              &nbsp;&nbsp;Remember me
-            </Typography>
-          </Box>
-          <Box mt={4} mb={1}>
-            <Button variant="gradient" color="info" fullWidth>
-              sign in
-            </Button>
-          </Box>
-          <Box mt={3} mb={1} textAlign="center">
-            <Typography variant="button" color="text">
-              Don&apos;t have an account?{" "}
-              <Typography
-                component={Link}
-                to="/authentication/sign-up"
-                variant="button"
-                color="info"
-                fontWeight="medium"
-                textGradient
-              >
-                Sign up
-              </Typography>
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    </Card>
-  );
-}
+          </HeadingStyle>
 
-export default Basic;
+          <Box component={motion.div} {...fadeInUp}>
+            <SocialAuth />
+          </Box>
+
+          <Divider sx={{ my: 3 }} component={motion.div} {...fadeInUp}>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              OR
+            </Typography>
+          </Divider>
+
+          <LoginForm setAuth={setAuth} />
+
+          <Typography
+            component={motion.p}
+            {...fadeInUp}
+            variant="body2"
+            align="center"
+            sx={{ mt: 3 }}
+          >
+            Don’t have an account?{" "}
+            <Link variant="subtitle2" component={RouterLink} to="/signup">
+              Sign up
+            </Link>
+          </Typography>
+        </ContentStyle>
+      </Container>
+    </RootStyle>
+  );
+};
+
+export default Login;
