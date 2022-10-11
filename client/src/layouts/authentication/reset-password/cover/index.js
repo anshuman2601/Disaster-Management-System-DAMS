@@ -6,12 +6,10 @@
 
 // @mui material components
 import Card from "@mui/material/Card";
-
-// DAMS React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Input from "@mui/material/Input";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
@@ -23,7 +21,7 @@ function Cover() {
   return (
     <CoverLayout coverHeight="50vh" image={bgImage}>
       <Card>
-        <MDBox
+        <Box
           variant="gradient"
           bgColor="info"
           borderRadius="lg"
@@ -34,25 +32,25 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h3" fontWeight="medium" color="white" mt={1}>
+          <Typography variant="h3" fontWeight="medium" color="white" mt={1}>
             Reset Password
-          </MDTypography>
-          <MDTypography display="block" variant="button" color="white" my={1}>
+          </Typography>
+          <Typography display="block" variant="button" color="white" my={1}>
             You will receive an e-mail in maximum 60 seconds
-          </MDTypography>
-        </MDBox>
-        <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
-            <MDBox mb={4}>
-              <MDInput type="email" label="Email" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mt={6} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+          </Typography>
+        </Box>
+        <Box pt={4} pb={3} px={3}>
+          <Box component="form" role="form">
+            <Box mb={4}>
+              <Input type="email" label="Email" variant="standard" fullWidth />
+            </Box>
+            <Box mt={6} mb={1}>
+              <Button variant="gradient" color="info" fullWidth>
                 reset
-              </MDButton>
-            </MDBox>
-          </MDBox>
-        </MDBox>
+              </Button>
+            </Box>
+          </Box>
+        </Box>
       </Card>
     </CoverLayout>
   );

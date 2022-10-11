@@ -1,150 +1,111 @@
-/**
-=========================================================
-* Disaster Response App
-=========================================================
-*/
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Container, Typography, Link, Box, Divider } from "@mui/material";
+import styled from "@emotion/styled";
 
-// react-router-dom components
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import SocialAuth from "../components/SocialAuth";
+import SignupForm from "../components/SignupForm";
+import Logo from "../components/Logo";
 
-import * as React from "react";
+const RootStyle = styled("div")({
+  background: "rgb(249, 250, 251)",
+  height: "100vh",
+  display: "grid",
+  placeItems: "center",
+});
 
-// @mui material components
-import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Box from "@mui/material/Box";
+const HeadingStyle = styled(Box)({
+  textAlign: "center",
+});
 
-// DAMS React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+const ContentStyle = styled(Box)({
+  maxWidth: 480,
+  padding: 25,
+  margin: "auto",
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  background: "#fff",
+});
 
-// Authentication layout components
-import CoverLayout from "layouts/authentication/components/CoverLayout";
+let easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    y: 40,
+    opacity: 0,
+    transition: { duration: 0.6, ease: easing },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
 
-// Images
-import bgImage from "assets/images/bg-sign-up-cover.jpeg";
-import { borderColor } from "@mui/system";
-
-function Cover() {
-  const [AccountType, setAccountType] = React.useState("");
-
-  const handleChange = (event) => {
-    setAccountType(event.target.value);
-  };
-
-  // HAVE TO FIGURE OUT WHY THE ACCOUNT DROP DOWN IS SUPER WEIRD
+// eslint-disable-next-line react/function-component-definition
+function Signup({ setAuth }) {
   return (
-    <CoverLayout image={bgImage}>
-      <Card>
-        <MDBox
-          variant="gradient"
-          bgColor="info"
-          borderRadius="lg"
-          coloredShadow="success"
-          mx={2}
-          mt={-6}
-          p={3}
-          mb={3}
-          textAlign="center"
-        >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Join us today
-          </MDTypography>
-          <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your details to register
-          </MDTypography>
-        </MDBox>
-        <MDBox pt={4} pb={6} px={3} py={2}>
-          <MDBox component="form" role="form" sx={{ minWidth: 120 }}>
-            <Box border={20} borderColor="white" boxShadow="white" bgcolor="white" color="white">
-              <FormControl fullWidth>
-              <InputLabel variant="outlined" id="AccountType">
-                Account Type
-              </InputLabel>
-              <Select
-                labelId="AccountTypeLabel"
-                id="AccountTypeId"
-                value={AccountType}
-                label="Account Type"
-                onChange={handleChange}
-                mb={50}
-              >
-                <MenuItem value="Admin">Admin</MenuItem>
-                <MenuItem value="Donor">Donor</MenuItem>
-                <MenuItem value="Recipient">Recipient</MenuItem>
-              </Select>
-              </FormControl>
-            </Box>
-            <MDBox mb={2}>
-              <MDInput type="text" label="Name" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="text" label="First Name" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="text" label="Last Name" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="email" label="Email" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="text" label="Username" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" fullWidth />
-            </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;I agree to the&nbsp;
-              </MDTypography>
-              <MDTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                color="info"
-                textGradient
-              >
-                Terms and Conditions
-              </MDTypography>
-            </MDBox>
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
-                sign up
-              </MDButton>
-            </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography variant="button" color="text">
-                Already have an account?{" "}
-                <MDTypography
-                  component={Link}
-                  to="/authentication/sign-in"
-                  variant="button"
-                  color="info"
-                  fontWeight="medium"
-                  textGradient
-                >
-                  Sign In
-                </MDTypography>
-              </MDTypography>
-            </MDBox>
-          </MDBox>
-        </MDBox>
-      </Card>
-    </CoverLayout>
+    <RootStyle>
+      <Container maxWidth="sm">
+        <ContentStyle>
+          <HeadingStyle component={motion.div} {...fadeInUp}>
+            <Logo />
+            <Typography sx={{ color: "text.secondary", mb: 5 }}>
+              {" "}
+              Enter your details below.
+            </Typography>
+          </HeadingStyle>
+
+          <Box component={motion.div} {...fadeInUp}>
+            <SocialAuth />
+          </Box>
+
+          <Divider sx={{ my: 3 }} component={motion.div} {...fadeInUp}>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              OR
+            </Typography>
+          </Divider>
+
+          <SignupForm setAuth={setAuth} />
+
+          <Typography
+            component={motion.p}
+            {...fadeInUp}
+            variant="body2"
+            align="center"
+            sx={{ color: "text.secondary", mt: 2 }}
+          >
+            By registering, I agree to{" "}
+            <Link underline="always" color="text.primary" href="#">
+              Terms of Service
+            </Link>{" "}
+            &{" "}
+            <Link underline="always" color="text.primary" href="#">
+              Privacy Policy
+            </Link>
+            .
+          </Typography>
+
+          <Typography
+            component={motion.p}
+            {...fadeInUp}
+            variant="body2"
+            align="center"
+            sx={{ mt: 3 }}
+          >
+            Have an account?{" "}
+            <Link variant="subtitle2" component={RouterLink} to="/login">
+              Login
+            </Link>
+          </Typography>
+        </ContentStyle>
+      </Container>
+    </RootStyle>
   );
 }
 
-export default Cover;
+export default Signup;
