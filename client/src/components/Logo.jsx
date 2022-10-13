@@ -6,7 +6,7 @@ function Logo() {
   return (
     <Box>
       <Link to="/">
-        <Box component="img" src="assets/images/logo-ct.png" alt="logo" />
+        <Box component="img" src="assets/images/apple-icon.png" alt="logo" />
       </Link>
     </Box>
   );

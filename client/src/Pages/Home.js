@@ -2,7 +2,7 @@ import { Button, Typography, Container, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Logo from "components/Logo";
 
-function Home({ setAuth }) {
+const Home = ({ setAuth }) => {
   const theme = useTheme();
 
   return (
@@ -43,35 +43,6 @@ function Home({ setAuth }) {
       </Button>
     </Container>
   );
-}
+};
 
-// const comp = () => (
-//   <motion.span
-//     variants={stagger}
-//     initial="initial"
-//     animate="animate"
-//     style={{
-//       textAlign: "center",
-//       marginTop: 4,
-//       padding: 4,
-//       fontSize: "8rem",
-//       fontWeight: 500,
-//       position: "relative",
-//       letterSpacing: "-0.8rem",
-//       display: "inline-block",
-//       whiteSpace: "nowrap",
-//       [theme.breakpoints.down("sm")]: {
-//         fontSize: "4rem",
-//         letterSpacing: "-0.4rem",
-//         paddin: 0,
-//       },
-//     }}
-//   >
-//     {[..."Welcome Back"].map((l, i) => (
-//       <motion.span variants={animation} key={i}>
-//         {l}
-//       </motion.span>
-//     ))}
-//   </motion.span>
-// );
 export default Home;

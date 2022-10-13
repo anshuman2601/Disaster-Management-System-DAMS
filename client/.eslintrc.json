@@ -30,5 +30,13 @@
     ],
     "react/jsx-curly-spacing": [2, "never"]
   },
-  "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
+  "settings": { "import/resolver": { "node": { "paths": ["src"] } } },
+
+  "react/function-component-definition": [
+    2,
+    {
+      "namedComponents": ["arrow-function", "function-declaration"],
+      "unnamedComponents": "arrow-function",
+    },
+  ],
 }

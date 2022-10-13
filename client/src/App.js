@@ -11,11 +11,11 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
-import Home from "layouts/Home";
-import Login from "layouts/authentication/sign-in";
-import Signup from "layouts/authentication/sign-up";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
-export default function App() {
+function App() {
   const [auth, setAuth] = useState(false);
   const location = useLocation();
 
@@ -39,3 +39,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;

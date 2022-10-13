@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 
 import { motion } from "framer-motion";
 import Logo from "components/Logo";
-import SocialAuth from "../components/SocialAuth";
-import SignupForm from "../components/SignupForm";
+import SocialAuth from "components/SocialAuth";
+import SignupForm from "components/SignupForm";
 
 const RootStyle = styled("div")({
   background: "rgb(249, 250, 251)",
@@ -47,7 +47,7 @@ const fadeInUp = {
 };
 
 // eslint-disable-next-line react/function-component-definition
-function Signup({ setAuth }) {
+const Signup = ({ setAuth }) => {
   return (
     <RootStyle>
       <Container maxWidth="sm">
