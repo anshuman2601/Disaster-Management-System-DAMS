@@ -106,6 +106,6 @@ const Signup = ({ setAuth }) => {
       </Container>
     </RootStyle>
   );
-}
+};
 
 export default Signup;

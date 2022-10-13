@@ -2,13 +2,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
 import { useNavigate } from "react-router-dom";
-import {
-  Stack,
-  Box,
-  TextField,
-  IconButton,
-  InputAdornment,
-} from "@mui/material";
+import { Stack, Box, TextField, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
@@ -34,13 +28,8 @@ const SignupForm = ({ setAuth }) => {
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("First name required"),
-    lastName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Last name required"),
-    email: Yup.string()
-      .email("Email must be a valid email address")
-      .required("Email is required"),
+    lastName: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Last name required"),
+    email: Yup.string().email("Email must be a valid email address").required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
 
@@ -115,15 +104,8 @@ const SignupForm = ({ setAuth }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      edge="end"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
+                    <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
+                      <Icon icon={showPassword ? "eva:eye-fill" : "eva:eye-off-fill"} />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -133,11 +115,7 @@ const SignupForm = ({ setAuth }) => {
             />
           </Stack>
 
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0, y: 20 }}
-            animate={animate}
-          >
+          <Box component={motion.div} initial={{ opacity: 0, y: 20 }} animate={animate}>
             <LoadingButton
               fullWidth
               size="large"
