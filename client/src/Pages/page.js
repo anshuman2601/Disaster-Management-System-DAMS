@@ -2,8 +2,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ProdImg from "../../assets/prod_1.png";
 
-/// /////////////////////////////////////////
-
 // custom animations
 const easing = [0.6, -0.05, 0.01, 0.99];
 

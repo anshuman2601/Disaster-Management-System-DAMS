@@ -11,9 +11,9 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 // @mui material components
 import CssBaseline from "@mui/material/CssBaseline";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -25,12 +25,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setAuth={setAuth} />} />
         <Route path="/signup" element={<Signup setAuth={setAuth} />} />
+        <Route path="/home" element={<Home setAuth={setAuth} />} />
+        <Route path="*" element={<Navigate to="/login" />} />
         <Route
           path="/"
           element={
             auth ? (
               <Home setAuth={setAuth} />
-            ) : (
+            ) : ( 
               <Navigate to="/login" state={{ from: location }} replace />
             )
           }

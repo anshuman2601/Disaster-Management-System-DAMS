@@ -5,14 +5,15 @@ import styled from "@emotion/styled";
 
 import { motion } from "framer-motion";
 import Logo from "components/Logo";
-import SocialAuth from "components/SocialAuth";
 import SignupForm from "components/SignupForm";
+
 
 const RootStyle = styled("div")({
   background: "rgb(249, 250, 251)",
   height: "100vh",
   display: "grid",
   placeItems: "center",
+  background: "linear-gradient(180deg, #1f0000 0%, #1f6abf 100%)"
 });
 
 const HeadingStyle = styled(Box)({
@@ -26,7 +27,7 @@ const ContentStyle = styled(Box)({
   display: "flex",
   justifyContent: "center",
   flexDirection: "column",
-  background: "#fff",
+  background: "#fff"
 });
 
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -54,20 +55,13 @@ const Signup = ({ setAuth }) => {
         <ContentStyle>
           <HeadingStyle component={motion.div} {...fadeInUp}>
             <Logo />
-            <Typography sx={{ color: "text.secondary", mb: 5 }}>
+            <Typography sx={{ color: "text.secondary", mb: 0 }}>
               {" "}
               Enter your details below.
             </Typography>
           </HeadingStyle>
 
-          <Box component={motion.div} {...fadeInUp}>
-            <SocialAuth />
-          </Box>
-
-          <Divider sx={{ my: 3 }} component={motion.div} {...fadeInUp}>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              OR
-            </Typography>
+          <Divider sx={{ my: 1 }} component={motion.div} {...fadeInUp}>
           </Divider>
 
           <SignupForm setAuth={setAuth} />

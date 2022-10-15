@@ -29,6 +29,14 @@ const SignupForm = ({ setAuth }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const accounts = ["Admin", "Donor", "Recipient"];
+
+  const accountOptions = accounts.map((accountType, key) => (
+    <option value={accountType} key={key}>
+      {accountType}
+    </option>
+  ));
+
   const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -41,6 +49,11 @@ const SignupForm = ({ setAuth }) => {
     email: Yup.string()
       .email("Email must be a valid email address")
       .required("Email is required"),
+    accountType: Yup.string().required("Account type is required").oneOf(accounts),
+    username: Yup.string().required()
+      .min(6, "Username must be at least 6 characters")
+      .max(14, "Username must be less than 14 characters")
+      .required("Username is required"),
     password: Yup.string().required("Password is required"),
   });
 
@@ -49,6 +62,8 @@ const SignupForm = ({ setAuth }) => {
       firstName: "",
       lastName: "",
       email: "",
+      accountType: "",
+      username: "",
       password: "",
     },
     validationSchema: SignupSchema,
@@ -94,18 +109,47 @@ const SignupForm = ({ setAuth }) => {
             spacing={3}
             component={motion.div}
             initial={{ opacity: 0, y: 40 }}
+            direction={{ xs: "column", sm: "column" }}
             animate={animate}
           >
             <TextField
               fullWidth
-              autoComplete="username"
+              autoComplete="email"
               type="email"
               label="Email address"
               {...getFieldProps("email")}
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
             />
-
+            <TextField
+            fullWidth
+            name="accountType"
+            select
+            label="Account Type"
+            {...getFieldProps("accountType")}
+            error={Boolean(touched.accountType && errors.accountType)}
+            helperText={touched.accountType && errors.accountType} 
+            >
+              <option value={""}>Select Account Type</option>
+                {accountOptions}
+            </TextField>
+          </Stack>
+          <Stack
+            spacing={3}
+            component={motion.div}
+            initial={{ opacity: 0, y: 40 }}
+            direction={{ xs: "column", sm: "row" }}
+            animate={animate}
+          >
+            <TextField
+              fullWidth
+              autoComplete="username"
+              label="Username"
+              type="username"
+              {...getFieldProps("username")}
+              error={Boolean(touched.username && errors.username)}
+              helperText={touched.username && errors.username}
+              />
             <TextField
               fullWidth
               autoComplete="current-password"
