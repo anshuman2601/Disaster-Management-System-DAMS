@@ -32,7 +32,7 @@ function App() {
           element={
             auth ? (
               <Home setAuth={setAuth} />
-            ) : ( 
+            ) : (
               <Navigate to="/login" state={{ from: location }} replace />
             )
           }

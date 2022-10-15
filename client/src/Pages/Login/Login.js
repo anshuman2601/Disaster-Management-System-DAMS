@@ -52,9 +52,7 @@ const Login = ({ setAuth }) => {
         <ContentStyle>
           <HeadingStyle component={motion.div} {...fadeInUp}>
             <Logo />
-            <Typography sx={{ color: "text.secondary", mb: 5 }}>
-              Login to your account
-            </Typography>
+            <Typography sx={{ color: "text.secondary", mb: 5 }}>Login to your account</Typography>
           </HeadingStyle>
 
           <Box component={motion.div} {...fadeInUp}>

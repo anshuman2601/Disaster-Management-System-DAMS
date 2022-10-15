@@ -2,13 +2,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
 import { useNavigate } from "react-router-dom";
-import {
-  Stack,
-  Box,
-  TextField,
-  IconButton,
-  InputAdornment,
-} from "@mui/material";
+import { Stack, Box, TextField, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
@@ -42,15 +36,11 @@ const SignupForm = ({ setAuth }) => {
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("First name required"),
-    lastName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Last name required"),
-    email: Yup.string()
-      .email("Email must be a valid email address")
-      .required("Email is required"),
+    lastName: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Last name required"),
+    email: Yup.string().email("Email must be a valid email address").required("Email is required"),
     accountType: Yup.string().required("Account type is required").oneOf(accounts),
-    username: Yup.string().required()
+    username: Yup.string()
+      .required()
       .min(6, "Username must be at least 6 characters")
       .max(14, "Username must be less than 14 characters")
       .required("Username is required"),
@@ -122,16 +112,16 @@ const SignupForm = ({ setAuth }) => {
               helperText={touched.email && errors.email}
             />
             <TextField
-            fullWidth
-            name="accountType"
-            select
-            label="Account Type"
-            {...getFieldProps("accountType")}
-            error={Boolean(touched.accountType && errors.accountType)}
-            helperText={touched.accountType && errors.accountType} 
+              fullWidth
+              name="accountType"
+              select
+              label="Account Type"
+              {...getFieldProps("accountType")}
+              error={Boolean(touched.accountType && errors.accountType)}
+              helperText={touched.accountType && errors.accountType}
             >
               <option value={""}>Select Account Type</option>
-                {accountOptions}
+              {accountOptions}
             </TextField>
           </Stack>
           <Stack
@@ -149,7 +139,7 @@ const SignupForm = ({ setAuth }) => {
               {...getFieldProps("username")}
               error={Boolean(touched.username && errors.username)}
               helperText={touched.username && errors.username}
-              />
+            />
             <TextField
               fullWidth
               autoComplete="current-password"
@@ -159,15 +149,8 @@ const SignupForm = ({ setAuth }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      edge="end"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
+                    <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
+                      <Icon icon={showPassword ? "eva:eye-fill" : "eva:eye-off-fill"} />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -177,11 +160,7 @@ const SignupForm = ({ setAuth }) => {
             />
           </Stack>
 
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0, y: 20 }}
-            animate={animate}
-          >
+          <Box component={motion.div} initial={{ opacity: 0, y: 20 }} animate={animate}>
             <LoadingButton
               fullWidth
               size="large"

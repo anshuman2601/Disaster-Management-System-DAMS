@@ -7,13 +7,12 @@ import { motion } from "framer-motion";
 import Logo from "components/Logo";
 import SignupForm from "components/SignupForm";
 
-
 const RootStyle = styled("div")({
   background: "rgb(249, 250, 251)",
   height: "100vh",
   display: "grid",
   placeItems: "center",
-  background: "linear-gradient(180deg, #1f0000 0%, #1f6abf 100%)"
+  background: "linear-gradient(180deg, #1f0000 0%, #1f6abf 100%)",
 });
 
 const HeadingStyle = styled(Box)({
@@ -27,7 +26,7 @@ const ContentStyle = styled(Box)({
   display: "flex",
   justifyContent: "center",
   flexDirection: "column",
-  background: "#fff"
+  background: "#fff",
 });
 
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -61,8 +60,7 @@ const Signup = ({ setAuth }) => {
             </Typography>
           </HeadingStyle>
 
-          <Divider sx={{ my: 1 }} component={motion.div} {...fadeInUp}>
-          </Divider>
+          <Divider sx={{ my: 1 }} component={motion.div} {...fadeInUp}></Divider>
 
           <SignupForm setAuth={setAuth} />
 
@@ -100,6 +98,6 @@ const Signup = ({ setAuth }) => {
       </Container>
     </RootStyle>
   );
-}
+};
 
 export default Signup;
