@@ -1,42 +1,30 @@
-/**
-=========================================================
-* Disaster Response App
-=========================================================
-*/
-
-import { useState, useEffect } from "react";
-
-// react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-// @mui material components
-import CssBaseline from "@mui/material/CssBaseline";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import CreatePost from "./pages/CreatePost";
+import Post from "./pages/Post";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 
 function App() {
-  const [auth, setAuth] = useState(false);
-  const location = useLocation();
-
   return (
-    <>
-      <CssBaseline />
-      <Routes>
-        <Route path="/login" element={<Login setAuth={setAuth} />} />
-        <Route path="/signup" element={<Signup setAuth={setAuth} />} />
-        <Route
-          path="/"
-          element={
-            auth ? (
-              <Home setAuth={setAuth} />
-            ) : (
-              <Navigate to="/login" state={{ from: location }} replace />
-            )
-          }
-        />
-      </Routes>
-    </>
+    <div className="App">
+      <Router>
+        <div className="navbar">
+          <Link to="/"> Home Page</Link>
+          <Link to="/createpost"> Create A Post</Link>
+          <Link to="/login"> Login</Link>
+          <Link to="/registration"> Registration</Link>
+        </div>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/createpost" exact component={CreatePost} />
+          <Route path="/post/:id" exact component={Post} />
+          <Route path="/registration" exact component={Registration} />
+          <Route path="/login" exact component={Login} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
