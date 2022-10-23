@@ -1,48 +1,37 @@
-import { Button, Typography, Container, Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import Logo from "components/Logo";
+import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Home = ({ setAuth }) => {
-  const theme = useTheme();
+function Home() {
+  const [listOfPosts, setListOfPosts] = useState([]);
+  let history = useNavigate();
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/posts").then((response) => {
+      setListOfPosts(response.data);
+    });
+  }, []);
 
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        height: "100vh",
-      }}
-    >
-      <Box sx={{ mb: 5, mt: -10 }}>
-        <Logo />
-      </Box>
-      <Typography
-        sx={{
-          textAlign: "center",
-          marginTop: "-4rem",
-          fontSize: "5rem",
-          fontWeight: 700,
-          letterSpacing: "-0.5rem",
-          display: "inline-block",
-          whiteSpace: "nowrap",
-          [theme.breakpoints.down("sm")]: {
-            fontSize: "4rem",
-            letterSpacing: "-0.4rem",
-          },
-        }}
-        gutterBottom
-      >
-        Welcome Back
-      </Typography>
-
-      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
-        Log out
-      </Button>
-    </Container>
+    <div>
+      {listOfPosts.map((value, key) => {
+        return (
+          <div
+            key={key}
+            className="post"
+            onClick={() => {
+              history.push(`/post/${value.id}`);
+            }}
+          >
+            <div className="title"> {value.title} </div>
+            <div className="body">{value.postText}</div>
+            <div className="footer">{value.username}</div>
+          </div>
+        );
+      })}
+    </div>
   );
-};
+}
 
 export default Home;
