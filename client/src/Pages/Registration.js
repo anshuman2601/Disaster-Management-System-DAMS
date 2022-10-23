@@ -21,7 +21,7 @@ function Registration() {
     first_name: Yup.string().min(2).max(15).required("First name is required"),
     last_name: Yup.string().min(2).max(15).required("Last name is required"),
     role: Yup.string().required("Role is required"),
-    status: Yup.string().required("Status is required")
+    status: Yup.string().required("Status is required"),
   });
 
   const onSubmit = (data) => {
@@ -33,76 +33,35 @@ function Registration() {
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <Form className="formContainer">
           <label>Username: </label>
           <ErrorMessage name="username" component="span" />
-          <Field
-            
-            id="username"
-            name="username"
-            placeholder="(Ex. John123...)"
-          />
+          <Field id="username" name="username" placeholder="(Ex. John123...)" />
 
           <label>Password: </label>
           <ErrorMessage name="password" component="span" />
-          <Field
-            
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Your Password..."
-          />
+          <Field type="password" id="password" name="password" placeholder="Your Password..." />
 
           <label>Email: </label>
           <ErrorMessage name="email" component="span" />
-          <Field
-            
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your Email..."
-          />
+          <Field type="email" id="email" name="email" placeholder="Your Email..." />
 
           <label>First Name: </label>
           <ErrorMessage name="firstname" component="span" />
-          <Field
-            
-            id="first_name"
-            name="first_name"
-            placeholder="...."
-          />
+          <Field id="first_name" name="first_name" placeholder="...." />
 
           <label>Last Name: </label>
           <ErrorMessage name="lastname" component="span" />
-          <Field
-            
-            id="last_name"
-            name="last_name"
-            placeholder="...."
-          />
+          <Field id="last_name" name="last_name" placeholder="...." />
 
           <label>Role: </label>
           <ErrorMessage name="role" component="span" />
-          <Field
-            
-            id="role"
-            name="role"
-            placeholder="Admin/Donor/Recipient"
-          />
+          <Field id="role" name="role" placeholder="Admin/Donor/Recipient" />
 
           <label>Status: </label>
           <ErrorMessage name="username" component="span" />
-          <Field
-            
-            id="status"
-            name="status"
-            placeholder="Active or Inactive"
-          />
+          <Field id="status" name="status" placeholder="Active or Inactive" />
 
           <button type="submit"> Register</button>
         </Form>

@@ -7,7 +7,6 @@ function Login() {
   const [password, setPassword] = useState("");
   console.log("testing");
 
-  
   const login = () => {
     const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
@@ -21,7 +20,7 @@ function Login() {
         <input type="text" placeholder="Username" />
         <label>Password:</label>
         <input type="password" placeholder="Password" />
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Login" />
       </form>
     </div>
   );
