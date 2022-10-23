@@ -5,7 +5,8 @@ import axios from "axios";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  console.log(errors);
 
   const onSubmit = (data) => {
     console.log("This Works");
@@ -17,15 +18,15 @@ function Login() {
     });
   };
   return (
-    <div className="login">
+    <div className="loginForm">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Username:</label>
-        <input type="text" placeholder="Username"  />
-      
+        <input type="text" placeholder="Username" {...register("Username", {required: true, min: 6, maxLength: 14})} />
+        {errors.Username && <span>This field is required</span>}
         <label>Password:</label>
-        <input type="password" onChange={(event) => { setPassword(event.target.value);}} />
+        <input type="password" placeholder="Password" {...register("Password", {required: true})} />
+        <input type="submit" value="Login"/>
       </form>
-      <button onClick={login}> Login </button>
     </div>
   );
 }
