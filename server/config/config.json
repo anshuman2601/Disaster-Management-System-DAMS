@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
-    "database": "tutorialDB",
+    "password": "Apollo@2601",
+    "database": "DAMSUserDB",
     "host": "localhost",
     "dialect": "mysql"
   },
