@@ -1,44 +1,31 @@
-/**
-=========================================================
-* Disaster Response App
-=========================================================
-*/
-
-import { useState, useEffect } from "react";
-
-// react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
-// @mui material components
-import CssBaseline from "@mui/material/CssBaseline";
-import Home from "./Pages/Home/Home";
-import Login from "./Pages/Login/Login";
-import Signup from "./Pages/Signup/Signup";
+import "./App.css";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import Registration from "./Pages/Registration";
+import Login from "./Pages/Login";
+import CreatePost from "./Pages/CreatePost";
+import Post from "./Pages/Post";
 
 function App() {
-  const [auth, setAuth] = useState(false);
-  const location = useLocation();
-
   return (
-    <>
-      <CssBaseline />
-      <Routes>
-        <Route path="/login" element={<Login setAuth={setAuth} />} />
-        <Route path="/signup" element={<Signup setAuth={setAuth} />} />
-        <Route path="/home" element={<Home setAuth={setAuth} />} />
-        <Route path="*" element={<Navigate to="/login" />} />
-        <Route
-          path="/"
-          element={
-            auth ? (
-              <Home setAuth={setAuth} />
-            ) : ( 
-              <Navigate to="/login" state={{ from: location }} replace />
-            )
-          }
-        />
-      </Routes>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        <div className="navbar">
+          <Link to="/"> Home Page</Link>
+          <Link to="/createpost"> Create Event</Link>
+          <Link to="/login"> Login</Link>
+          <Link to="/registration"> Registration</Link>
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/post/:id" element={<Post />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
