@@ -37,7 +37,7 @@
     2,
     {
       "namedComponents": ["arrow-function", "function-declaration"],
-      "unnamedComponents": "arrow-function",
-    },
-  ],
+      "unnamedComponents": "arrow-function"
+    }
+  ]
 }

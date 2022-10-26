@@ -28,10 +28,11 @@ router.post("/login", async (req, res) => {
   if (user) {
     bcrypt.compare(password, user.password).then((match) => {
       if (match) res.json("YOU LOGGED IN!!!");
-      else res.json("Wrong Username And Password Combination" );
+      else res.json("Wrong Username And Password Combination");
     });
+  } else {
+    res.json("User Doesn't Exist");
   }
-  else {res.json("User Doesn't Exist");}
 });
 
 module.exports = router;
