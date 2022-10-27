@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+//import Home from "Pages/Home";
 
 function Login() {
   console.log("testing");
@@ -14,12 +16,19 @@ function Login() {
     password: Yup.string().min(4).max(20).required("Password is required"),
   });
 
-  const login = (data) => {
+  const login = async (data) => {
     //const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
       console.log(response.data);
     });
   };
+
+  const navigate = useNavigate();
+
+  const navPages = () => {
+    navigate("/")
+  }
+
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={login} validationSchema={validationSchema}>
@@ -31,7 +40,7 @@ function Login() {
           <label>Password: </label>
           <ErrorMessage name="password" component="span" />
           <Field type="password" id="password" name="password" placeholder="Your Password..." />
-          <button type="submit">Login</button>
+          <button type="submit" id="login" onClick={navPages}>Login</button>
         </Form>
       </Formik>
     </div>

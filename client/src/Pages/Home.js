@@ -7,11 +7,11 @@ function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   let history = useNavigate();
 
-  useEffect(() => {
-    axios.get("http://localhost:3001/posts").then((response) => {
-      setListOfPosts(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("http://localhost:3001/").then((response) => {
+  //     setListOfPosts(response.data);
+  //   });
+  // }, []);
 
   return (
     <div>
