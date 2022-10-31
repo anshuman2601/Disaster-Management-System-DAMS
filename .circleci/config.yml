@@ -25,8 +25,12 @@ jobs:
 workflows:
   build:
     jobs:
+      - cypress/install:
+          build: 'npm install'
       - cypress/run:
-          start: npm start
+          requires:
+            - cypress/install
+          start: 'npm start'
           record: true
   SampleCI:
     jobs:
