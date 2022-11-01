@@ -25,24 +25,24 @@ function Registration() {
     status: Yup.string().required("Status is required"),
   });
 
-  async function onSubmit(data){
+  async function onSubmit(data) {
     console.log(data);
-    async function registrationPost(data){
-      let {data:response} = await axios.post("http://localhost:3001/auth", data);
+    async function registrationPost(data) {
+      let { data: response } = await axios.post("http://localhost:3001/auth", data);
       return response;
-    };
+    }
     let response = await registrationPost(data);
     console.log(response);
     //let navigate = useNavigate();
-    if(response === 'SUCCESS'){
+    if (response === "SUCCESS") {
       //const routeChange = () => {
       //  useNavigate(`/verification`);
       //}
       // kinda jank
-      console.log('rerouting');
-      window.location.href='/verification';
+      console.log("rerouting");
+      window.location.href = "/verification";
     }
-  };
+  }
 
   return (
     <div>
@@ -76,7 +76,10 @@ function Registration() {
           <ErrorMessage name="username" component="span" />
           <Field id="status" name="status" placeholder="Active or Inactive" />
 
-          <button type="submit" to="/verification"> Register</button>
+          <button type="submit" to="/verification">
+            {" "}
+            Register
+          </button>
         </Form>
       </Formik>
     </div>
