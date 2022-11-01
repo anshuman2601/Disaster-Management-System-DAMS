@@ -5,6 +5,7 @@ import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import CreatePost from "./Pages/CreatePost";
 import Post from "./Pages/Post";
+import Verification from "./Pages/Verification";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
