@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
   if (user) {
     bcrypt.compare(password, user.password).then((match) => {
     res.json("YOU LOGGED IN!!!");
-      else res.json("Wrong Username And Password Combination");
+    else res.json("Wrong Username And Password Combination");
    });
   } else {
    res.json("User Doesn't Exist");
@@ -42,8 +42,9 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/verify", async (req, res) => {
-	const { email, code } = req.body;
+	const { username, email, code } = req.body;
 	if(email_handler.verify_code(email, code)){
+		users.update({status:"verified"},{where : {username: username}});
 		res.json("valid code");
 		return;
 	}

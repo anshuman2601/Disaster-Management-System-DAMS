@@ -5,6 +5,7 @@ import axios from "axios";
 
 function Verification() {
   const initialValues = {
+    username: "",
     email: "",
     code: ""
   };
@@ -32,6 +33,11 @@ function Verification() {
     <div>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <Form className="formContainer">
+
+          <label>Username: </label>
+          <ErrorMessage name="username" component="span" />
+          <Field id="username" name="username" placeholder="(Ex. John123...)" />
+
           <label>Email: </label>
           <ErrorMessage name="email" component="span" />
           <Field type="email" id="email" name="email" placeholder="Your Email..." />
