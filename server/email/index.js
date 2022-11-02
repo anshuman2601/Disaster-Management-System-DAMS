@@ -32,18 +32,18 @@ function send_verification(email) {
     }
   });
 
-  var result = "";
-  var characters =
+  let result = "";
+  let characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < 8; i++) {
+  let charactersLength = characters.length;
+  for (let i = 0; i < 8; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   console.log(result);
 
   email_cache[email] = result;
 
-  message = {
+  let message = {
     from: "disasteremailverifier@gmail.com",
     to: email,
     subject: "Disaster Verification",
