@@ -3,12 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Home;
