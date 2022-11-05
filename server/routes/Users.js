@@ -32,6 +32,7 @@ router.post("/login", async (req, res) => {
 
   console.log(req.body);
   if (user) {
+<<<<<<< HEAD
     bcrypt.compare(password, user.password).then((match) => {
       if (match) {
         res.json("YOU LOGGED IN!!!");
