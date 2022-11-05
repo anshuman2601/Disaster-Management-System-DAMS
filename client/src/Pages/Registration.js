@@ -12,7 +12,7 @@ function Registration() {
     first_name: "",
     last_name: "",
     role: "",
-    status: "",
+    //status: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -22,7 +22,7 @@ function Registration() {
     first_name: Yup.string().min(2).max(15).required("First name is required"),
     last_name: Yup.string().min(2).max(15).required("Last name is required"),
     role: Yup.string().required("Role is required"),
-    status: Yup.string().required("Status is required"),
+    //status: Yup.string().required("Status is required"),
   });
 
   async function onSubmit(data) {
@@ -71,10 +71,6 @@ function Registration() {
           <label>Role: </label>
           <ErrorMessage name="role" component="span" />
           <Field id="role" name="role" placeholder="Admin/Donor/Recipient" />
-
-          <label>Status: </label>
-          <ErrorMessage name="username" component="span" />
-          <Field id="status" name="status" placeholder="Active or Inactive" />
 
           <button type="submit" to="/verification">
             {" "}
