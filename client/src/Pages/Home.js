@@ -11,16 +11,12 @@ const Home = () => {
   }, []);
 
   const deleteDisaster = async (id) => {
-    await axios.delete(
-      `https://60decafeabbdd9001722d05c.mockapi.io/users/${id}`
-    );
+    await axios.delete(`https://60decafeabbdd9001722d05c.mockapi.io/users/${id}`);
     loadDisasters();
   };
 
   const loadDisasters = async () => {
-    const result = await axios.get(
-      `https://60decafeabbdd9001722d05c.mockapi.io/users`
-    );
+    const result = await axios.get(`https://60decafeabbdd9001722d05c.mockapi.io/users`);
     setDisaster(result.data);
   };
   return (
@@ -42,10 +38,7 @@ const Home = () => {
               <td>{user.name}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
-              <Button
-                variant="contained"
-                onClick={() => navigate.push(`/user/${user.id}`)}
-              >
+              <Button variant="contained" onClick={() => navigate.push(`/user/${user.id}`)}>
                 View
               </Button>
               {/* <Link class="btn btn-outline-primary mr-2" to={`./edituser/${user.id}`}>Edit</Link> */}
@@ -56,11 +49,7 @@ const Home = () => {
               >
                 Edit
               </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => deleteDisaster(user.id)}
-              >
+              <Button variant="contained" color="secondary" onClick={() => deleteDisaster(user.id)}>
                 Delete
               </Button>
             </tr>

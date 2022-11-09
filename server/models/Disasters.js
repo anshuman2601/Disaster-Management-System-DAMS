@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Disasters = sequelize.define("disasters", {
-    disaster_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+    disaster_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
     disaster_name: { type: DataTypes.STRING, allowNull: false },
     disaster_type: { type: DataTypes.STRING, allowNull: false },
     disaster_date: { type: DataTypes.DATE, allowNull: false },
@@ -10,4 +14,4 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   return Disasters;
-}
+};
