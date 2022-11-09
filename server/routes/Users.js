@@ -52,7 +52,7 @@ router.post("/verify", async (req, res) => {
     return;
   }
   res.json("invalid code");
-  return;
+  return 0;
 });
 
 module.exports = router;
