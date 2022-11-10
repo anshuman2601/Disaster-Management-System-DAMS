@@ -4,24 +4,24 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 const Home = () => {
   const navigate = useNavigate();
-  const [disasters, setDisaster] = useState([]);
+  const [disasters, setDisasters] = useState([]);
 
   useEffect(() => {
     loadDisasters();
   }, []);
 
-  const deleteDisaster = async (id) => {
-    await axios.delete(
-      `https://60decafeabbdd9001722d05c.mockapi.io/users/${id}`
-    );
-    loadDisasters();
-  };
+  // const deleteDisaster = async (id) => {
+  //   await axios.delete(
+  //     `https://60decafeabbdd9001722d05c.mockapi.io/users/${id}`
+  //   );
+  //   loadDisasters();
+  // };
 
   const loadDisasters = async () => {
     const result = await axios.get(
-      `https://60decafeabbdd9001722d05c.mockapi.io/users`
+       'http://localhost:3001/disasters/'
     );
-    setDisaster(result.data);
+    setDisasters(result.data);
   };
   return (
     <div className="home-page">
@@ -29,22 +29,22 @@ const Home = () => {
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Disaster Event</th>
-            <th scope="col">User Name</th>
-            <th scope="col">Email Id</th>
+            <th scope="col">Disaster</th>
+            <th scope="col">Date of Occurrence</th>
+            <th scope="col">Location</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {disasters.map((user, index) => (
+          {disasters.map((disaster, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{user.name}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
+              <td>{disaster.disaster_name}</td>
+              <td>{disaster.disaster_date}</td>
+              <td>{disaster.disaster_location}</td>
               <Button
                 variant="contained"
-                onClick={() => navigate.push(`/user/${user.id}`)}
+                //onClick={() => navigate.push(`/user/${user.id}`)}
               >
                 View
               </Button>
@@ -52,14 +52,14 @@ const Home = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => navigate.push(`/edituser/${user.id}`)}
+                //onClick={() => navigate.push(`/edituser/${user.id}`)}
               >
                 Edit
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => deleteDisaster(user.id)}
+                //onClick={() => deleteDisaster(user.id)}
               >
                 Delete
               </Button>
