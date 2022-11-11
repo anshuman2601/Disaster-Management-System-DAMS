@@ -4,7 +4,7 @@ import Home from "./Pages/Home";
 import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import CreatePost from "./Pages/CreatePost";
-import Post from "./Pages/Post";
+import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/post/:id" element={<Post />} />
+          <Route path="/disaster/:id" element={<Disaster />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
