@@ -11,12 +11,21 @@ function Disaster() {
     loadDisasters();
   }, []);
 
-  const loadDisasters = async () => {
+  async function loadDisasters() {
     const result = await axios.get(
       'http://localhost:3001/disasters/'
     );
     setDisasters(result.data);
+  }
+
+  // Function to delete a disaster
+  let deleteDisaster = async (id) => {
+    await axios.delete(
+      `http://localhost:3001/disasters/${id}`
+    );
+    loadDisasters();
   };
+
   return (
     <div className="home-page">
       <table class="table">
@@ -41,17 +50,14 @@ function Disaster() {
               >
                 View
               </Button>
-              {/* <Link class="btn btn-outline-primary mr-2" to={`./edituser/${user.id}`}>Edit</Link> */}
+              
               <Button
                 variant="contained"
                 color="primary"
               >
                 Edit
               </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-              >
+              <Button variant="contained" color="secondary" onClick={() => deleteDisaster(disaster.id)}>
                 Delete
               </Button>
             </tr>

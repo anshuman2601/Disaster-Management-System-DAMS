@@ -1,63 +1,74 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState, useEffect } from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+
+
+function CreateData(no, event, date, location) {
+  return { no, event, date, location };
+}
 
 function CreatePost() {
-  let history = useNavigate();
-  const initialValues = {
-    title: "",
-    postText: "",
-    username: "",
-  };
+    const navigate = useNavigate();
+    const [disasters, setDisasters] = useState([]);
 
-  const validationSchema = Yup.object().shape({
-    title: Yup.string().required("You must input a Title!"),
-    postText: Yup.string().required(),
-    username: Yup.string().min(3).max(15).required(),
-  });
+  useEffect(() => {
+    loadDisasters();
+  }, []);
 
-  const onSubmit = (data) => {
-    axios.post("http://localhost:3001/posts", data).then((response) => {
-      history.push("/");
+  async function loadDisasters() {
+    const result = await axios
+    .get('http://localhost:3001/disasters/')
+    .then((result) => {
+      setDisasters(result.data);
+      console.log("Result", disasters);
+    })
+    .catch((err) => {
+      console.log(err);
     });
+  }
+
+  // Function to delete a disaster
+  let deleteDisaster = async (id) => {
+    await axios.delete(
+      `http://localhost:3001/disasters/${id}`
+    );
+    loadDisasters();
   };
-
-  return (
-    <div className="createPostPage">
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        <Form className="formContainer">
-          <label>Title: </label>
-          <ErrorMessage name="title" component="span" />
-          <Field
-            autocomplete="off"
-            id="inputCreatePost"
-            name="title"
-            placeholder="(Ex. Title...)"
-          />
-          <label>Post: </label>
-          <ErrorMessage name="postText" component="span" />
-          <Field
-            autocomplete="off"
-            id="inputCreatePost"
-            name="postText"
-            placeholder="(Ex. Post...)"
-          />
-          <label>Username: </label>
-          <ErrorMessage name="username" component="span" />
-          <Field
-            autocomplete="off"
-            id="inputCreatePost"
-            name="username"
-            placeholder="(Ex. John123...)"
-          />
-
-          <button type="submit"> Create Post</button>
-        </Form>
-      </Formik>
-    </div>
-  );
+  
+return (
+  
+  <TableContainer component={Paper}>
+    <Button variant="contained" onClick={() => navigate("/create")}>Add Event</Button>
+    <Table sx={{ minWidth: 150 }} aria-label="simple table" stickyHeader>
+      <TableHead>
+        <TableRow>
+          <TableCell>ID</TableCell>
+          <TableCell align="right">Event</TableCell>
+          <TableCell align="right">Date of Occurrence</TableCell>
+          <TableCell align="right">Location</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+          {disasters.map((disaster, index) => (
+            <TableRow key={disaster.id}>
+              <TableCell component="th" scope="row">{disaster.disaster_id}</TableCell>
+              <TableCell align="right">{disaster.disaster_name}</TableCell>
+              <TableCell align="right">{disaster.disaster_date}</TableCell>
+              <TableCell align="right">{disaster.disaster_location}</TableCell>
+            </TableRow>
+          ))}
+          </TableBody>
+          </Table>
+          </TableContainer>
+          );
 }
 
 export default CreatePost;
