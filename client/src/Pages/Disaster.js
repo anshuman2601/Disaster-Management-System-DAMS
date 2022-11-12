@@ -38,7 +38,7 @@ function CreatePost() {
 
   return (
     <TableContainer component={Paper}>
-      <Button variant="contained" onClick={() => navigate("/create")}>
+      <Button variant="contained" onClick={() => navigate("/createdisaster")}>
         Add Event
       </Button>
       <Table sx={{ minWidth: 150 }} aria-label="simple table" stickyHeader>
