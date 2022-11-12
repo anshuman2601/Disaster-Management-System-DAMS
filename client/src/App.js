@@ -14,7 +14,6 @@ function App() {
       <BrowserRouter>
         <div className="navbar">
           <Link to="/"> Home Page</Link>
-          <Link to="/createdisaster"> Create Event</Link>
           <Link to="/login"> Login</Link>
           <Link to="/registration"> Registration</Link>
         </div>
