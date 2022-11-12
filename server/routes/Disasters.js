@@ -6,7 +6,9 @@ const { disasters } = require("../models");
 
 // get active disasters
 router.get("/", async (req, res) => {
-  const disaster = await disasters.findAll({where: {disaster_status:'Active'}})
+  const disaster = await disasters.findAll({
+    where: { disaster_status: "Active" },
+  });
   res.json(disaster);
 });
 

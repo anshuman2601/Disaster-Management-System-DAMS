@@ -6,8 +6,7 @@ const email_handler = require("../email");
 const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
-  const { username, password, email, first_name, last_name, role } =
-    req.body;
+  const { username, password, email, first_name, last_name, role } = req.body;
   bcrypt.hash(password, 10).then((hash) => {
     users.create({
       username: username,

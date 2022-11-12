@@ -7,4 +7,4 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   return Response;
-}
+};

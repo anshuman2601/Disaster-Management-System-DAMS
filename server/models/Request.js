@@ -9,4 +9,4 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   return Request;
-}
+};
