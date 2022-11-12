@@ -5,6 +5,7 @@ import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
+import CreateDisaster from "./Pages/CreateDisaster"
 
 function App() {
   return (
@@ -12,7 +13,6 @@ function App() {
       <BrowserRouter>
         <div className="navbar">
           <Link to="/"> Home Page</Link>
-          <Link to="/createpost"> Create Event</Link>
           <Link to="/login"> Login</Link>
           <Link to="/registration"> Registration</Link>
         </div>
@@ -22,6 +22,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/createdisaster" element={<CreateDisaster />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
