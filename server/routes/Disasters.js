@@ -48,9 +48,9 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete disaster (delete)
-router.delete("/:id", async (req, res) => {
-  const disaster = await disasters.destroy({ where: { id: req.params.id } });
-  res.json(disaster);
+router.delete('/:id', async (req, res) => {
+  const disaster = await disasters.destroy({ where: { disaster_id: req.params.id} });
+  res.json("DELETED");
 });
 
 router.post("/create", async (req, res) => {
