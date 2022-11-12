@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function Registration() {
   const initialValues = {
@@ -33,12 +32,8 @@ function Registration() {
     }
     let response = await registrationPost(data);
     console.log(response);
-    //let navigate = useNavigate();
+
     if (response === "SUCCESS") {
-      //const routeChange = () => {
-      //  useNavigate(`/verification`);
-      //}
-      // kinda jank
       console.log("rerouting");
       window.location.href = "/verification";
     }
