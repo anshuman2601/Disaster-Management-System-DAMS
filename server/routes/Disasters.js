@@ -49,20 +49,19 @@ router.put("/:id", async (req, res) => {
 
 // delete disaster (delete)
 router.delete("/:id", async (req, res) => {
-  const disaster = await disasters.destroy({ where: { id: req.params.id } });
-  res.json(disaster);
+  const disaster = await disasters.destroy({
+    where: { disaster_id: req.params.id },
+  });
+  res.json("DELETED");
 });
 
 router.post("/create", async (req, res) => {
-  const { name, type, description, date, location} =
-    req.body;
+  const { name, type, description, date, location } = req.body;
   //console.log(req);
   //id = disasters.findAll().length;
   largest_id = disasters.findAll({
-    attributes: [
-       sequelize.fn('MAX', sequelize.col('disaster_id'))
-    ],
-    });
+    attributes: [sequelize.fn("MAX", sequelize.col("disaster_id"))],
+  });
   id = largest_id.disaster_id + 1;
   disasters.create({
     disaster_id: id,
@@ -71,9 +70,9 @@ router.post("/create", async (req, res) => {
     disaster_date: date,
     disaster_description: description,
     disaster_location: location,
-    disaster_status: "Active"
-  })
-  res.json("SUCCESS")
+    disaster_status: "Active",
+  });
+  res.json("SUCCESS");
 });
 
 module.exports = router;
