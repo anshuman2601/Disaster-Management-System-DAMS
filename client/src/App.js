@@ -5,7 +5,7 @@ import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
-import CreateDisaster from "./Pages/CreateDisaster"
+import CreateDisaster from "./Pages/CreateDisaster";
 
 function App() {
   return (
