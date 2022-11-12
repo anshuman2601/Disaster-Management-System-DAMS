@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Disaster from "./Disaster";
-import CreatePost from "./CreatePost";
 
 function Home() {
 
   return (
     <div className="home-page">
-      
-      <CreatePost />
+      <Disaster />
     </div>
   );
 }

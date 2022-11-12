@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Home from "./Pages/Home";
 import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
-import CreatePost from "./Pages/CreatePost";
 import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
 
@@ -19,8 +18,7 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/disaster/:id" element={<Disaster />} />
+          <Route path="/disaster/" element={<Disaster />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
