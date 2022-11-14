@@ -10,7 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-function CreatePost() {
+function Disaster() {
   const navigate = useNavigate();
   const [disasters, setDisasters] = useState([]);
 
@@ -72,4 +72,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default Disaster;

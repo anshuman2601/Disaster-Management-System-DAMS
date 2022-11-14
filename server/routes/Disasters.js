@@ -57,11 +57,10 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   const { name, type, description, date, location } = req.body;
-  //console.log(req);
-  //id = disasters.findAll().length;
   largest_id = disasters.findAll({
     attributes: [sequelize.fn("MAX", sequelize.col("disaster_id"))],
   });
+  console.log(largest_id);
   id = largest_id.disaster_id + 1;
   disasters.create({
     disaster_id: id,

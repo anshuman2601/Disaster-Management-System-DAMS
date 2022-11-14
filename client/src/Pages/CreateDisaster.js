@@ -6,9 +6,6 @@ import { useNavigate } from "react-router-dom";
 import parse from "date-fns/parse";
 
 
-
-
-
 function CreateDisaster() {
     const navigate = useNavigate();
     const [disaster, setDisaster] = useState([]);
@@ -41,19 +38,21 @@ function CreateDisaster() {
     //status: Yup.string().required("Status is required"),
     });
 
-
-//   async function sendDisaster() {
-//     const result = await axios
-//     .post('http://localhost:3001/disasters/create')
-//     .then((result) => {
-//       setDisaster(result.data);
-//       console.log("Result", disaster);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
+// create a async function to post the data to the database using axios and navigate to the home page after the data is posted
+// async function onSubmit(values) {
+//     console.log("submitDisaster", values);
+//     async function disasterPost(values) {
+//       let {values:response} = await axios.post("http://localhost:3001/disasters/", values);
+//       return response;
+//     }
+//     let response = await disasterPost(values);
+//     console.log("response", response);
+//     if (response === "SUCCESS") {
+//       navigate("/");
+//     }
 //   }
-async function onSubmit(data) {
+
+async function submitDisaster(data) {
     console.log(data);
     async function disasterPost(data) {
       let { data: response } = await axios.post("http://localhost:3001/disasters/create", data);
@@ -61,22 +60,15 @@ async function onSubmit(data) {
     }
     let response = await disasterPost(data);
     console.log(response);
-    //let navigate = useNavigate();
     if (response === "SUCCESS") {
-      //const routeChange = () => {
-      //  useNavigate(`/verification`);
-      //}
-      // kinda jank
       console.log("rerouting");
       window.location.href = "/";
     }
   }
 
-
-  
 return (
     <div>
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Formik initialValues={initialValues} onSubmit={submitDisaster} validationSchema={validationSchema}>
         <Form className="formContainer">
             <label>Name: </label>
             <ErrorMessage name="name" component="span" />
