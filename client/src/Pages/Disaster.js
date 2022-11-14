@@ -36,6 +36,8 @@ function Disaster() {
     loadDisasters();
   };
 
+  // create a function to edit a disaster by given id and navigate back to the home page
+
   return (
     <TableContainer component={Paper}>
       <Button variant="contained" onClick={() => navigate("/createdisaster")}>
@@ -48,6 +50,7 @@ function Disaster() {
             <TableCell align="right">Event</TableCell>
             <TableCell align="right">Date of Occurrence</TableCell>
             <TableCell align="right">Location</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +63,8 @@ function Disaster() {
               <TableCell align="right">{disaster.disaster_date}</TableCell>
               <TableCell align="right">{disaster.disaster_location}</TableCell>
               <TableCell align="right">
-                <Button variant="contained" onClick={() => deleteDisaster(disaster.disaster_id)}>
+                <Button variant="outlined" onClick={() => navigate(`/editdisaster`)}>Edit</Button>
+                <Button variant="outlined" color="error" onClick={() => deleteDisaster(disaster.disaster_id)}>
                   Delete
                 </Button>
               </TableCell>

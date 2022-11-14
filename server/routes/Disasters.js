@@ -42,9 +42,9 @@ router.put("/:id", async (req, res) => {
       date: date,
       status: status,
     },
-    { where: { id: req.params.id } }
+    { where: { disaster_id: req.params.id } }
   );
-  res.json(disaster);
+  res.json("SUCCESS");
 });
 
 // delete disaster (delete)
