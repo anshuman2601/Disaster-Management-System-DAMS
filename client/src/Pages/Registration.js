@@ -65,7 +65,7 @@ function Registration() {
 
           <label>Role: </label>
           <ErrorMessage name="role" component="span" />
-          <Field id="role" name="role" placeholder="Admin/Donor/Recipient" />
+          <Field id="role" name="role" placeholder="Donor/Recipient" />
 
           <button type="submit" to="/verification">
             {" "}
