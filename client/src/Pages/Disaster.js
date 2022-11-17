@@ -61,6 +61,11 @@ function Disaster() {
               <TableCell align="right">{disaster.disaster_location}</TableCell>
               <TableCell align="right">
                 <Button variant="contained" onClick={() => deleteDisaster(disaster.disaster_id)}>
+                  Edit
+                </Button>
+              </TableCell>
+              <TableCell align="right">
+                <Button variant="contained" onClick={() => deleteDisaster(disaster.disaster_id)}>
                   Delete
                 </Button>
               </TableCell>
