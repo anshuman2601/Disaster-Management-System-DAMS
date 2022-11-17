@@ -1,10 +1,31 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState } from "react";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
+import Textfield from "../Components/Textfield.js";
+import { Container, Grid, Typography } from "@mui/material";
+import Button from "../Components/Button";
+import { ClassNames } from "@emotion/react";
+
+const roles = [
+  // {
+  //   value: "Admin",
+  //   label: "Admin",
+  // },
+  {
+    value: "Donor",
+    label: "Donor",
+  },
+  {
+    value: "Recipient",
+    label: "Recipient",
+  },
+];
 
 function Registration() {
-  const initialValues = {
+   const initialValues = {
     username: "",
     password: "",
     email: "",
@@ -39,41 +60,67 @@ function Registration() {
     }
   }
 
+  const [role, setRole] = useState('');
+
+  const handleChange = (event) => {
+    setRole(event.target.value);
+  };
+
   return (
-    <div>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        <Form className="formContainer">
-          <label>Username: </label>
-          <ErrorMessage name="username" component="span" />
-          <Field id="username" name="username" placeholder="(Ex. John123...)" />
+    <Grid container>
+      <Grid item xs={12}>
+        <Container maxWidth="md">
+          <div className={ClassNames.formWrapper}>
 
-          <label>Password: </label>
-          <ErrorMessage name="password" component="span" />
-          <Field type="password" id="password" name="password" placeholder="Your Password..." />
+            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+              <Form>
+          
+                <Typography>Registration </Typography>
+                 <Textfield name="username" label="Username" margin="normal" />
 
-          <label>Email: </label>
-          <ErrorMessage name="email" component="span" />
-          <Field type="email" id="email" name="email" placeholder="Your Email..." />
+          
+                
+                <Textfield type="password" name="password" label="Password" margin="normal" />
 
-          <label>First Name: </label>
-          <ErrorMessage name="firstname" component="span" />
-          <Field id="first_name" name="first_name" placeholder="...." />
+          
+                
+                <Textfield type="email" name="email" label="Email" margin="normal" />
 
-          <label>Last Name: </label>
-          <ErrorMessage name="lastname" component="span" />
-          <Field id="last_name" name="last_name" placeholder="...." />
+          
+                
+                <Textfield name="first_name" label="First Name" margin="normal" />
 
-          <label>Role: </label>
-          <ErrorMessage name="role" component="span" />
-          <Field id="role" name="role" placeholder="Admin/Donor/Recipient" />
+          
+                
+                <Textfield name="last_name" label="Last Name" margin="normal" />
 
-          <button type="submit" to="/verification">
-            {" "}
-            Register
-          </button>
+
+               {/* 
+                <Textfield
+                select
+                label="Role"
+                value={role}
+                onChange={handleChange}
+                helperText="Please select your role"
+                margin="normal"
+                >
+                  {roles.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </Textfield>
+{/*
+                <Button type="submit" variant="contained" to="/verification">
+                  {" "}
+                  Register
+                </Button> */}
         </Form>
       </Formik>
     </div>
+  </Container>
+    </Grid>
+    </Grid>
   );
 }
 

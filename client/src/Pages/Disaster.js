@@ -43,7 +43,7 @@ function Disaster() {
       <Button variant="contained" onClick={() => navigate("/createdisaster")}>
         Add Event
       </Button>
-      <Table sx={{ minWidth: 150 }} aria-label="simple table" stickyHeader>
+      <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
