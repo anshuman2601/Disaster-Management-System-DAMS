@@ -53,7 +53,7 @@ function EditDisaster(){
     async function submitDisaster(data) {
         console.log(data);
         async function disasterPost(data) {
-            let { data: response } = await axios.put(`http://localhost:3001/disasters/${id}`, data);
+            let { data: response } = await axios.put(`http://localhost:3001/disasters/`, data);
             return response;
         }
         let response = await disasterPost(data);

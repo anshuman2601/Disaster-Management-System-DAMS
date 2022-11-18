@@ -8,6 +8,7 @@ import Textfield from "../Components/Textfield.js";
 import { Container, Grid, Typography } from "@mui/material";
 import Button from "../Components/Button";
 import { ClassNames } from "@emotion/react";
+import Select from "../Components/Select";
 
 const roles = [
   // {
@@ -70,10 +71,11 @@ function Registration() {
     <Grid container>
       <Grid item xs={12}>
         <Container maxWidth="md">
-          <div className={ClassNames.formWrapper}>
+          <Box sx={{ mt: 8 }}>
+            <div className={ClassNames.formWrapper}>
 
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-              <Form>
+              <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+                <Form>
           
                 <Typography>Registration </Typography>
                  <Textfield name="username" label="Username" margin="normal" />
@@ -95,8 +97,14 @@ function Registration() {
                 <Textfield name="last_name" label="Last Name" margin="normal" />
 
 
-               {/* 
-                <Textfield
+                <Grid item xs={12}>
+                    <Select
+                      name="role"
+                      label="Role"
+                      options={roles.map(role => role.value)}
+                    />
+                  </Grid>
+                 {/* <Textfield
                 select
                 label="Role"
                 value={role}
@@ -109,17 +117,18 @@ function Registration() {
                       {option.label}
                     </MenuItem>
                   ))}
-                </Textfield>
-{/*
+                </Textfield> */}
+
                 <Button type="submit" variant="contained" to="/verification">
                   {" "}
                   Register
-                </Button> */}
-        </Form>
-      </Formik>
-    </div>
-  </Container>
-    </Grid>
+                </Button>
+                </Form>
+              </Formik>
+            </div>
+          </Box>
+        </Container>
+      </Grid>
     </Grid>
   );
 }
