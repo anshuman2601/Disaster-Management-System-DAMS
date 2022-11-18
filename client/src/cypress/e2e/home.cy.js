@@ -1,4 +1,3 @@
-
 describe("Show Disasters", () => {
   it("h1 has correct text", () => {
     cy.visit("http://localhost:3000/login");
