@@ -7,6 +7,8 @@ import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
 import CreateDisaster from "./Pages/CreateDisaster";
 import EditDisaster from "./Pages/EditDisaster";
+import CreateItem from "./Pages/CreateItem";
+import Items from "./Pages/Items";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/createdisaster" element={<CreateDisaster />} />
           <Route path="/editdisaster" element={<EditDisaster />} />
+          <Route path="/createitem" element={<CreateItem />} />
+          <Route path="/items" element={<Items />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>

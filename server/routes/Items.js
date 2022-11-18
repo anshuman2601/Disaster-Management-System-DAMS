@@ -1,12 +1,14 @@
 // create express router for items
-
+const sequelize = require("sequelize");
 const express = require("express");
 const router = express.Router();
 const { items } = require("../models");
 
 // get all items (get)
 router.get("/", async (req, res) => {
-  const item = await items.findAll();
+  const item = await items.findAll({
+    where: { item_status: "Active" },
+  });
   res.json(item);
 });
 
@@ -17,14 +19,21 @@ router.get("/:id", async (req, res) => {
 });
 
 // create item (post)
-router.post("/", async (req, res) => {
-  const { name, description, quantity, status, disaster_id } = req.body;
+router.post("/create", async (req, res) => {
+  const { name, description, quantity } = req.body;
+  let largest_id = await items.findAll({
+    attributes: [ [sequelize.fn("max", sequelize.col("item_id")), "max_id"] ],
+    raw: true
+  });
+  let id = largest_id[0].item_id + 1;
+
   const item = await items.create({
-    name: name,
-    description: description,
-    quantity: quantity,
-    status: status,
-    disaster_id: disaster_id,
+    item_id: id,
+    item_name: name,
+    item_description: description,
+    item_quantity: quantity,
+    item_status: "Active",
+    item_disaster_id: 6, // this is a placeholder for now
   });
   res.json(item);
 });
@@ -38,16 +47,16 @@ router.put("/:id", async (req, res) => {
       description: description,
       quantity: quantity,
       status: status,
-      disaster_id: disaster_id,
+      item_id: disaster_id,
     },
-    { where: { id: req.params.id } }
+    { where: { item_id: req.params.id } }
   );
   res.json(item);
 });
 
 // delete item (delete)
 router.delete("/:id", async (req, res) => {
-  const item = await items.destroy({ where: { id: req.params.id } });
+  const item = await items.destroy({ where: { item_id: req.params.id } });
   res.json(item);
 });
 

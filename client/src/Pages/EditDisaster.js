@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import parse from "date-fns/parse";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import Button from "../Components/Button";
 
 // create a function to edit a disaster by given id and navigate to the edit page using the navigate function
 let editDisaster = (id, navigate) => {
