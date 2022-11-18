@@ -38,20 +38,7 @@ function CreateDisaster() {
     //status: Yup.string().required("Status is required"),
     });
 
-// create a async function to post the data to the database using axios and navigate to the home page after the data is posted
-// async function onSubmit(values) {
-//     console.log("submitDisaster", values);
-//     async function disasterPost(values) {
-//       let {values:response} = await axios.post("http://localhost:3001/disasters/", values);
-//       return response;
-//     }
-//     let response = await disasterPost(values);
-//     console.log("response", response);
-//     if (response === "SUCCESS") {
-//       navigate("/");
-//     }
-//   }
-
+// async function to post the data to the database using axios and navigate to the home page after the data is posted
 async function submitDisaster(data) {
     console.log(data);
     async function disasterPost(data) {

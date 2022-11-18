@@ -20,6 +20,9 @@ function Login() {
     //const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
       console.log(response.data);
+      if (response.data === "YOU LOGGED IN!!!") {
+        navPages();
+      }
     });
   };
 
@@ -40,7 +43,7 @@ function Login() {
           <label>Password: </label>
           <ErrorMessage name="password" component="span" />
           <Field type="password" id="password" name="password" placeholder="Your Password..." />
-          <button type="submit" id="login" onClick={navPages}>Login</button>
+          <button type="submit" id="login" >Login</button>
         </Form>
       </Formik>
     </div>

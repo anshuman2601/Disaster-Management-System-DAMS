@@ -5,7 +5,8 @@ import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
 import Disaster from "./Pages/Disaster";
 import Verification from "./Pages/Verification";
-import CreateDisaster from "./Pages/CreateDisaster"
+import CreateDisaster from "./Pages/CreateDisaster";
+import EditDisaster from "./Pages/EditDisaster";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
           <Route path="/createdisaster" element={<CreateDisaster />} />
+          <Route path="/editdisaster" element={<EditDisaster />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
