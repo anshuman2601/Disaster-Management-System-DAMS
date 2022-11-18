@@ -104,20 +104,6 @@ function Registration() {
                       options={roles.map(role => role.value)}
                     />
                   </Grid>
-                 {/* <Textfield
-                select
-                label="Role"
-                value={role}
-                onChange={handleChange}
-                helperText="Please select your role"
-                margin="normal"
-                >
-                  {roles.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Textfield> */}
 
                 <Button type="submit" variant="contained" to="/verification">
                   {" "}
