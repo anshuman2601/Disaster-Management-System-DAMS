@@ -22,8 +22,8 @@ router.get("/:id", async (req, res) => {
 router.post("/create", async (req, res) => {
   const { name, description, quantity } = req.body;
   let largest_id = await items.findAll({
-    attributes: [ [sequelize.fn("max", sequelize.col("item_id")), "max_id"] ],
-    raw: true
+    attributes: [[sequelize.fn("max", sequelize.col("item_id")), "max_id"]],
+    raw: true,
   });
   let id = largest_id[0].item_id + 1;
 
