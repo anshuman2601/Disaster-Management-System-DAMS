@@ -29,8 +29,8 @@ function Login() {
   const navigate = useNavigate();
 
   const navPages = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <div>
@@ -43,7 +43,9 @@ function Login() {
           <label>Password: </label>
           <ErrorMessage name="password" component="span" />
           <Field type="password" id="password" name="password" placeholder="Your Password..." />
-          <button type="submit" id="login" >Login</button>
+          <button type="submit" id="login">
+            Login
+          </button>
         </Form>
       </Formik>
     </div>

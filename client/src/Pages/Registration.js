@@ -26,7 +26,7 @@ const roles = [
 ];
 
 function Registration() {
-   const initialValues = {
+  const initialValues = {
     username: "",
     password: "",
     email: "",
@@ -61,7 +61,7 @@ function Registration() {
     }
   }
 
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("");
 
   const handleChange = (event) => {
     setRole(event.target.value);
@@ -73,42 +73,31 @@ function Registration() {
         <Container maxWidth="md">
           <Box sx={{ mt: 8 }}>
             <div className={ClassNames.formWrapper}>
-
-              <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+              >
                 <Form>
-          
-                <Typography>Registration </Typography>
-                 <Textfield name="username" label="Username" margin="normal" />
+                  <Typography>Registration </Typography>
+                  <Textfield name="username" label="Username" margin="normal" />
 
-          
-                
-                <Textfield type="password" name="password" label="Password" margin="normal" />
+                  <Textfield type="password" name="password" label="Password" margin="normal" />
 
-          
-                
-                <Textfield type="email" name="email" label="Email" margin="normal" />
+                  <Textfield type="email" name="email" label="Email" margin="normal" />
 
-          
-                
-                <Textfield name="first_name" label="First Name" margin="normal" />
+                  <Textfield name="first_name" label="First Name" margin="normal" />
 
-          
-                
-                <Textfield name="last_name" label="Last Name" margin="normal" />
+                  <Textfield name="last_name" label="Last Name" margin="normal" />
 
-
-                <Grid item xs={12}>
-                    <Select
-                      name="role"
-                      label="Role"
-                      options={roles.map(role => role.value)}
-                    />
+                  <Grid item xs={12}>
+                    <Select name="role" label="Role" options={roles.map((role) => role.value)} />
                   </Grid>
 
-                <Button type="submit" variant="contained" to="/verification">
-                  {" "}
-                  Register
-                </Button>
+                  <Button type="submit" variant="contained" to="/verification">
+                    {" "}
+                    Register
+                  </Button>
                 </Form>
               </Formik>
             </div>
