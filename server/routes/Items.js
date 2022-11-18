@@ -6,9 +6,7 @@ const { items } = require("../models");
 
 // get all items (get)
 router.get("/", async (req, res) => {
-  const item = await items.findAll({
-    where: { item_status: "Active" },
-  });
+  const item = await items.findAll();
   res.json(item);
 });
 
@@ -20,22 +18,21 @@ router.get("/:id", async (req, res) => {
 
 // create item (post)
 router.post("/create", async (req, res) => {
-  const { name, description, quantity } = req.body;
+  const { name, description } = req.body;
   let largest_id = await items.findAll({
-    attributes: [ [sequelize.fn("max", sequelize.col("item_id")), "max_id"] ],
-    raw: true
+    attributes: [ sequelize.fn("MAX", sequelize.col("item_id")) ],
   });
-  let id = largest_id[0].item_id + 1;
+  let id = largest_id.item_id + 1;
 
   const item = await items.create({
     item_id: id,
     item_name: name,
     item_description: description,
-    item_quantity: quantity,
-    item_status: "Active",
-    item_disaster_id: 6, // this is a placeholder for now
+    // item_quantity: quantity,
+    // item_status: "Active",
+    // item_disaster_id: 6, // this is a placeholder for now
   });
-  res.json(item);
+  res.json("SUCCESS");
 });
 
 // update item (put)
@@ -45,9 +42,9 @@ router.put("/:id", async (req, res) => {
     {
       name: name,
       description: description,
-      quantity: quantity,
-      status: status,
-      item_id: disaster_id,
+      // quantity: quantity,
+      // status: status,
+      // item_id: disaster_id,
     },
     { where: { item_id: req.params.id } }
   );

@@ -1,5 +1,5 @@
 // create express router for responses to requests for items
-
+const sequelize = require("sequelize");
 const express = require("express");
 const router = express.Router();
 const { responses } = require("../models");
