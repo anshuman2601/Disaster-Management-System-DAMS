@@ -1,8 +1,8 @@
 import React from "react";
 import Disaster from "./Disaster";
 import Items from "./Items";
-import Request from "./Request"
-import Response from "./Response"
+import Request from "./Request";
+import Response from "./Response";
 
 function Home() {
   return (
@@ -10,7 +10,6 @@ function Home() {
       <Disaster />
       <Items />
       <Request />
-      
     </div>
   );
 }
