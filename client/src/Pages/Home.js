@@ -1,13 +1,16 @@
 import React from "react";
 import Disaster from "./Disaster";
 import Items from "./Items";
-import Registration from "./Registration";
+import Request from "./Request"
+import Response from "./Response"
 
 function Home() {
   return (
     <div className="home-page">
       <Disaster />
       <Items />
+      <Request />
+      
     </div>
   );
 }

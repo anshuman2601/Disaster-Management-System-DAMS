@@ -45,7 +45,6 @@ function Items() {
                     <TableRow>
                         <TableCell>ID</TableCell>
                         <TableCell align="right">Item</TableCell>
-                        <TableCell align="right">Quantity</TableCell>
                         <TableCell align="center">Actions</TableCell>
                     </TableRow>
                 </TableHead>
@@ -56,10 +55,9 @@ function Items() {
                                 {item.item_id}
                             </TableCell>
                             <TableCell align="right">{item.item_name}</TableCell>
-                            <TableCell align="right">{item.item_quantity}</TableCell>
                             <TableCell align="center">
                                 <Button variant="outlined" onClick={() => editItem(item.id)}>Edit</Button>
-                                <Button variant="contained" color="error" onClick={() => deleteItem(item.id)}>Delete</Button>
+                                <Button variant="contained" color="error" onClick={() => deleteItem(item.item_id)}>Delete</Button>
                             </TableCell>
                         </TableRow>
                     ))}

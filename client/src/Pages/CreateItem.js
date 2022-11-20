@@ -12,16 +12,13 @@ function CreateItem() {
   const [item, setItem] = useState([]);
 
   const initialValues = {
-    id: "1",
     name: "",
     description: "",
-    quantity: ""
   };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(4).max(20).required("name is required"),
-    description: Yup.string().min(4).max(30).required("short description is required"),
-    quantity: Yup.number().required("quantity is required")
+    description: Yup.string().min(4).max(30).required("short description is required")
   });
 
 
@@ -61,9 +58,6 @@ function CreateItem() {
                     <Textfield name="description" label="Description" />
                   </Grid>
 
-                  <Grid item xs={12}>
-                    <Textfield name="quantity" label="Quantity" />
-                  </Grid>
 
                   <Grid item xs={12}>
                     <Button variant="contained" color="primary" type="submit"> Create Item </Button>
