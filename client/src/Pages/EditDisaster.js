@@ -34,9 +34,6 @@ function EditDisaster(){
         //status: Yup.string().required("Status is required"),
         });
 
-    useEffect(() => {
-        loadDisasterbyId();
-    }, []);
     
     async function loadDisasterbyId(id) {
         const result = await axios
@@ -49,6 +46,10 @@ function EditDisaster(){
             console.log(err);
         });
     }
+
+    useEffect(() => {
+        loadDisasterbyId();
+    }, []);
 
     async function submitDisaster(data) {
         console.log(data);

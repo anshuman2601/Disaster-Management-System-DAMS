@@ -14,10 +14,6 @@ function Disaster() {
   const navigate = useNavigate();
   const [disasters, setDisasters] = useState([]);
 
-  useEffect(() => {
-    loadDisasters();
-  }, []);
-
   async function loadDisasters() {
     const result = await axios
       .get("http://localhost:3001/disasters/")
@@ -30,6 +26,10 @@ function Disaster() {
       });
   }
 
+  useEffect(() => {
+    loadDisasters();
+  }, []);
+  
   // Function to delete a disaster
   let deleteDisaster = async (id) => {
     await axios.delete(`http://localhost:3001/disasters/${id}`);

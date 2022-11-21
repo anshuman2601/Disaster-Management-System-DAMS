@@ -10,10 +10,6 @@ function Items() {
     const navigate = useNavigate();
     const [items, setItems] = useState([]);
 
-    useEffect(() => {
-        loadItems();
-    } , []);
-
     async function loadItems() {
         const result = await axios.get("http://localhost:3001/items/").then((result) => {
             setItems(result.data);
@@ -22,6 +18,10 @@ function Items() {
             console.log(err);
         });
     }
+
+    useEffect(() => {
+        loadItems();
+    } , []);
 
     // Function to delete an item
     let deleteItem = async (id) => {

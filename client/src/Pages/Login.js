@@ -16,6 +16,11 @@ function Login() {
     password: Yup.string().min(4).max(20).required("Password is required"),
   });
 
+  const navigate = useNavigate();
+  const navPages = () => {
+    navigate("/")
+  }
+
   const login = async (data) => {
     //const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
@@ -25,12 +30,6 @@ function Login() {
       }
     });
   };
-
-  const navigate = useNavigate();
-
-  const navPages = () => {
-    navigate("/")
-  }
 
   return (
     <div>
