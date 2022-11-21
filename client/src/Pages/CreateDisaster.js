@@ -1,45 +1,45 @@
-import React,  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import parse from "date-fns/parse";
 
-
 function CreateDisaster() {
-    const navigate = useNavigate();
-    const [disaster, setDisaster] = useState([]);
+  const navigate = useNavigate();
+  const [disaster, setDisaster] = useState([]);
 
-    const initialValues = {
-        id: "1",
-        name: "",
-        type: "",
-        description: "",
-        date: "",
-        location: "",
-        //status: "",
-      };
+  const initialValues = {
+    id: "1",
+    name: "",
+    type: "",
+    description: "",
+    date: "",
+    location: "",
+    //status: "",
+  };
 
-    const validationSchema = Yup.object().shape({
+  const validationSchema = Yup.object().shape({
     name: Yup.string().min(4).max(20).required("name is required"),
     type: Yup.string().min(4).max(20).required("type is required"),
     description: Yup.string().min(4).max(30).required("short description is required"),
-    date: Yup.date().transform(function (value, originalValue) {
+    date: Yup.date()
+      .transform(function (value, originalValue) {
         if (this.isType(value)) {
-        return value;
+          return value;
         }
         const result = parse(originalValue, "dd.MM.yyyy", new Date());
         return result;
-    })
-    .typeError("please enter a valid date")
-    .required()
-    .min("1969-11-13", "Date is too early"),
+      })
+      .typeError("please enter a valid date")
+      .required()
+      .min("1969-11-13", "Date is too early"),
     location: Yup.string().min(2).max(15).required("location is required"),
     //status: Yup.string().required("Status is required"),
-    });
+  });
 
-// async function to post the data to the database using axios and navigate to the home page after the data is posted
-async function submitDisaster(data) {
+  // async function to post the data to the database using axios and navigate to the home page after the data is posted
+  async function submitDisaster(data) {
     console.log(data);
     async function disasterPost(data) {
       let { data: response } = await axios.post("http://localhost:3001/disasters/create", data);
@@ -53,10 +53,15 @@ async function submitDisaster(data) {
     }
   }
 
-return (
+  return (
     <div>
-        <Formik initialValues={initialValues} onSubmit={submitDisaster} validationSchema={validationSchema}>
-        <Form><div className="formContainer">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={submitDisaster}
+        validationSchema={validationSchema}
+      >
+        <Form>
+          <div className="formContainer">
             <label>Name: </label>
             <ErrorMessage name="name" component="span" />
             <Field id="name" name="name" placeholder="" />
@@ -78,14 +83,14 @@ return (
             <Field id="location" name="location" placeholder="" />
 
             <button type="submit" to="/">
-            {" "}
-            Submit
+              {" "}
+              Submit
             </button>
-        </div>
+          </div>
         </Form>
-        </Formik>
+      </Formik>
     </div>
-    );
+  );
 }
 
 export default CreateDisaster;

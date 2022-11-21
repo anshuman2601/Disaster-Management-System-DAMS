@@ -32,21 +32,22 @@ function Verification() {
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        <Form><div className="formContainer">
-          <label>Username: </label>
-          <ErrorMessage name="username" component="span" />
-          <Field id="username" name="username" placeholder="(Ex. John123...)" />
+        <Form>
+          <div className="formContainer">
+            <label>Username: </label>
+            <ErrorMessage name="username" component="span" />
+            <Field id="username" name="username" placeholder="(Ex. John123...)" />
 
-          <label>Email: </label>
-          <ErrorMessage name="email" component="span" />
-          <Field type="email" id="email" name="email" placeholder="Your Email..." />
+            <label>Email: </label>
+            <ErrorMessage name="email" component="span" />
+            <Field type="email" id="email" name="email" placeholder="Your Email..." />
 
-          <label>Code: </label>
-          <ErrorMessage name="code" component="span" />
-          <Field id="code" name="code" placeholder="...." />
+            <label>Code: </label>
+            <ErrorMessage name="code" component="span" />
+            <Field id="code" name="code" placeholder="...." />
 
-          <button type="submit"> Verify</button>
-        </div>
+            <button type="submit"> Verify</button>
+          </div>
         </Form>
       </Formik>
     </div>

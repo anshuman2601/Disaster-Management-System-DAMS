@@ -63,8 +63,14 @@ function Disaster() {
               <TableCell align="right">{disaster.disaster_date}</TableCell>
               <TableCell align="right">{disaster.disaster_location}</TableCell>
               <TableCell align="right">
-                <Button variant="outlined" onClick={() => navigate(`/editdisaster`)}>Edit</Button>
-                <Button variant="outlined" color="error" onClick={() => deleteDisaster(disaster.disaster_id)}>
+                <Button variant="outlined" onClick={() => navigate(`/editdisaster`)}>
+                  Edit
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => deleteDisaster(disaster.disaster_id)}
+                >
                   Delete
                 </Button>
               </TableCell>
