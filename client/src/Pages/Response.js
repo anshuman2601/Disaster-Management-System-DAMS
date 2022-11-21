@@ -14,19 +14,19 @@ function Response() {
     const navigate = useNavigate();
     const [response, setResponse] = useState([]);
 
-    useEffect(() => {
-        loadResponse();
-    }
-    , []);
-
     async function loadResponse() {
         const result = await axios.get("http://localhost:3001/response/").then((result) => {
             setResponse(result.data);
-            console.log("Result", response);
+            //console.log("Result", response);
         }).catch((err) => {
             console.log(err);
         });
     }
+
+    useEffect(() => {
+        loadResponse();
+    }
+    , []);
 
     return (
         <div>

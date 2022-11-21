@@ -69,7 +69,7 @@ function EditDisaster(){
     return (
         <div>
         <Formik onSubmit={submitDisaster} validationSchema={validationSchema}>
-        <Form className="formContainer">
+        <Form><div className="formContainer">
             <label>Name: </label>
             <ErrorMessage name="name" component="span" />
             <Field id="name" name="name" placeholder="" />
@@ -94,6 +94,7 @@ function EditDisaster(){
             {" "}
             Submit
             </button>
+        </div>
         </Form>
         </Formik>
     </div>

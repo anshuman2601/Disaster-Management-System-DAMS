@@ -76,16 +76,6 @@ body {
   border-radius: 5px;
 }
 
-.formContainer #inputCreatePost {
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid grey;
-  border-radius: 5px;
-  padding-left: 10px;
-  font-size: 20px;
-}
-
 .formContainer button {
   margin-top: 15px;
   height: 40px;

@@ -32,7 +32,7 @@ function Verification() {
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        <Form className="formContainer">
+        <Form><div className="formContainer">
           <label>Username: </label>
           <ErrorMessage name="username" component="span" />
           <Field id="username" name="username" placeholder="(Ex. John123...)" />
@@ -46,6 +46,7 @@ function Verification() {
           <Field id="code" name="code" placeholder="...." />
 
           <button type="submit"> Verify</button>
+        </div>
         </Form>
       </Formik>
     </div>

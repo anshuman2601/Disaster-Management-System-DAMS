@@ -13,20 +13,21 @@ import Button from "@mui/material/Button";
 function Request() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
+    
+    async function loadRequests() {
+        const result = await axios.get("http://localhost:3001/requests/").then((result) => {
+            setRequests(result.data);
+            //console.log("Result", requests);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     useEffect(() => {
         loadRequests();
     }
     , []);
     
-    async function loadRequests() {
-        const result = await axios.get("http://localhost:3001/requests/").then((result) => {
-            setRequests(result.data);
-            console.log("Result", requests);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
     return (
         <div>
             <TableContainer component={Paper}>

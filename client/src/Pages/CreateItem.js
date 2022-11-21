@@ -42,7 +42,7 @@ function CreateItem() {
           <div className="Item">
 
             <Formik initialValues={initialValues} onSubmit={submitItem} validationSchema={validationSchema}>
-              <Form className="formContainer">
+              <Form><div className="formContainer">
 
                 <Grid container spacing={2}>
 
@@ -64,6 +64,7 @@ function CreateItem() {
                   </Grid>
 
                 </Grid>
+              </div>
                 </Form>
             </Formik>
           </div>
