@@ -12,7 +12,6 @@ function Home() {
       <Items />
       <Request />
       <Map />
-      
     </div>
   );
 }
