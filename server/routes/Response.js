@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // create response (post) - this is where the user responds to a request for items
-router.post("/", async (req, res) => {
+router.post("/create", async (req, res) => {
   const { name, description, quantity, status, disaster_id } = req.body;
   const response = await responses.create({
     name: name,

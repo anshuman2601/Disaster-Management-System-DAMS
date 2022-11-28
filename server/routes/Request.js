@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // create request (post)
-router.post("/", async (req, res) => {
+router.post("/create", async (req, res) => {
   const { name, description, quantity, status, disaster_id } = req.body;
   const request = await requests.create({
     name: name,

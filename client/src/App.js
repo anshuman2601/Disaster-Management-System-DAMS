@@ -13,10 +13,11 @@ import CreateDisaster from "./Pages/CreateDisaster";
 import EditDisaster from "./Pages/EditDisaster";
 import CreateItem from "./Pages/CreateItem";
 // import EditItem from "./Pages/EditItem";
-// import CreateRequest from "./Pages/CreateRequest";
-// import EditRequest from "./Pages/EditRequest";
-// import CreateResponse from "./Pages/CreateResponse";
-// import EditResponse from "./Pages/EditResponse";
+import CreateRequest from "./Pages/CreateRequest";
+import EditRequest from "./Pages/EditRequest";
+import CreateResponse from "./Pages/CreateResponse";
+import EditResponse from "./Pages/EditResponse";
+import Map from "./Pages/Map";
 
 function App() {
   return (
@@ -29,16 +30,21 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/disaster/" element={<Disaster />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/createdisaster" element={<CreateDisaster />} />
-          <Route path="/editdisaster" element={<EditDisaster />} />
-          <Route path="/createitem" element={<CreateItem />} />
+          <Route path="/disaster/" element={<Disaster />} />
           <Route path="/items" element={<Items />} />
           <Route path="/request" element={<Request />} />
           <Route path="/response" element={<Response />} />
+          <Route path="/createdisaster" element={<CreateDisaster />} />
+          <Route path="/createitem" element={<CreateItem />} />
+          <Route path="/createrequest" element={<CreateRequest />} />
+          <Route path="/createresponse" element={<CreateResponse />} />
+          <Route path="/editdisaster" element={<EditDisaster />} />
+          <Route path="/editrequest" element={<EditRequest />} />
+          <Route path="/editresponse" element={<EditResponse />} />
+          <Route path="/map" element={<Map />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
