@@ -41,7 +41,7 @@ function App() {
           <Route path="/createitem" element={<CreateItem />} />
           <Route path="/createrequest" element={<CreateRequest />} />
           <Route path="/createresponse" element={<CreateResponse />} />
-          <Route path="/editdisaster" element={<EditDisaster />} />
+          <Route path="/editdisaster/:id" element={<EditDisaster />} />
           <Route path="/editrequest" element={<EditRequest />} />
           <Route path="/editresponse" element={<EditResponse />} />
           <Route path="/map" element={<Map />} />
