@@ -14,6 +14,8 @@ function Disaster() {
   const navigate = useNavigate();
   const [disasters, setDisasters] = useState([]);
 
+  
+
   async function loadDisasters() {
     const result = await axios
       .get("http://localhost:3001/disasters/")
@@ -63,7 +65,7 @@ function Disaster() {
               <TableCell align="right">{disaster.disaster_date}</TableCell>
               <TableCell align="right">{disaster.disaster_location}</TableCell>
               <TableCell align="right">
-                <Button variant="outlined" onClick={() => navigate(`/editdisaster`)}>Edit</Button>
+                <Button variant="outlined" onClick={() => navigate(`/editdisaster/${disaster.disaster_id}`)}>Edit</Button>
                 <Button variant="outlined" color="error" onClick={() => deleteDisaster(disaster.disaster_id)}>
                   Delete
                 </Button>

@@ -33,14 +33,18 @@ router.post("/", async (req, res) => {
 
 // update disaster (put)
 router.put("/:id", async (req, res) => {
-  const { name, description, location, date, status } = req.body;
+  const { status } = req.body;
+  console.log(status);
+  console.log('blahalsdfjhlasdjfkljasdl;fjs\n');
+  new_status = '';
+  if (status === '1') {
+    new_status = 'Inactive';
+  }
+  else new_status = 'Active';
+  console.log(new_status);
   const disaster = await disasters.update(
     {
-      name: name,
-      description: description,
-      location: location,
-      date: date,
-      status: status,
+      disaster_status: new_status
     },
     { where: { disaster_id: req.params.id } }
   );

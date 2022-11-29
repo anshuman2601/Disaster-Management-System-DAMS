@@ -3,35 +3,43 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import parse from "date-fns/parse";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Components/Button";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Grid from "@mui/material/Grid"
+import Select from "../Components/Select"
+import { ClassNames } from "@emotion/react";
 
-// create a function to edit a disaster by given id and navigate to the edit page using the navigate function
-let editDisaster = (id, navigate) => {
-  navigate(`/editdisaster/${id}`);
-} 
+
+const statuses = [
+    
+    {
+      value: "Active",
+      label: "Active",
+    },
+    {
+      value: "Inactive",
+      label: "Inactive",
+    }
+  ];
 
 function EditDisaster(){
     const navigate = useNavigate();
-    const [disasters, setDisasters] = useState([]);
+    const [disaster, setDisaster] = useState([]);
 
-    
+    const initialValues = {
+        status: "",
+      };
+
+    let { id } = useParams();
+
     const validationSchema = Yup.object().shape({
-        name: Yup.string().min(4).max(20).required("name is required"),
-        type: Yup.string().min(4).max(20).required("type is required"),
-        description: Yup.string().min(4).max(30).required("short description is required"),
-        date: Yup.date().transform(function (value, originalValue) {
-            if (this.isType(value)) {
-            return value;
-            }
-            const result = parse(originalValue, "dd.MM.yyyy", new Date());
-            return result;
-        })
-        .typeError("please enter a valid date")
-        .required()
-        .min("1969-11-13", "Date is too early"),
-        location: Yup.string().min(2).max(15).required("location is required"),
-        //status: Yup.string().required("Status is required"),
+        status: Yup.string().required("Status is required")
         });
 
     
@@ -39,8 +47,8 @@ function EditDisaster(){
         const result = await axios
         .get(`http://localhost:3001/disasters/${id}`)
         .then((result) => {
-            setDisasters(result.data);
-            console.log("Result", disasters);
+            setDisaster(result.data);
+            console.log("Result", disaster);
         })
         .catch((err) => {
             console.log(err);
@@ -48,56 +56,70 @@ function EditDisaster(){
     }
 
     useEffect(() => {
-        loadDisasterbyId();
+        loadDisasterbyId(id);
     }, []);
 
     async function submitDisaster(data) {
         console.log(data);
         async function disasterPost(data) {
-            let { data: response } = await axios.put(`http://localhost:3001/disasters/`, data);
+            let { data: response } = await axios.put(`http://localhost:3001/disasters/${id}`, data);
             return response;
         }
         let response = await disasterPost(data);
         console.log(response);
         if (response === "SUCCESS") {
-            navigate(`/editdisaster/`);
+            navigate(`/`);
         }
     }
-    // Function to delete a disaster
+    
+    const [status, setStatus] = useState('');
+
+  const handleChange = (event) => {
+    setStatus(event.target.value);
+  };
     
     // create a function to edit a disaster by given id and navigate back to the home page
     
     return (
         <div>
-        <Formik onSubmit={submitDisaster} validationSchema={validationSchema}>
+            <Table>
+                <TableRow>
+                    <TableCell>ID: {disaster.disaster_id}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Name: {disaster.disaster_name}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Date: {disaster.disaster_date} </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Description: {disaster.disaster_description}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Location: {disaster.disaster_location}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Status: {disaster.disaster_status} </TableCell>
+                </TableRow>
+            </Table>
+        <div className={ClassNames.formWrapper} >
+        <Formik initialValues={initialValues} onSubmit={submitDisaster} validationSchema={validationSchema}>
         <Form><div className="formContainer">
-            <label>Name: </label>
-            <ErrorMessage name="name" component="span" />
-            <Field id="name" name="name" placeholder="" />
-
-            <label>Type: </label>
-            <ErrorMessage name="type" component="span" />
-            <Field id="type" name="type" placeholder="" />
-
-            <label>Description: </label>
-            <ErrorMessage name="email" component="span" />
-            <Field id="description" name="description" placeholder="Short description here..." />
-
-            <label>Date: </label>
-            <ErrorMessage name="date" component="span" />
-            <Field type="date" id="date" name="date" placeholder="" />
-
-            <label>Location: </label>
-            <ErrorMessage name="location" component="span" />
-            <Field id="location" name="location" placeholder="" />
-
-            <button type="submit" to="/">
-            {" "}
-            Submit
-            </button>
+        <Grid item xs={12}>
+                    <Select
+                      name="status"
+                      label="Status"
+                      options={statuses.map(status => status.value)}
+                    />
+                  </Grid>
+                  <Button type="submit" variant="contained">
+                    {" "}
+                  Submit
+                </Button>
         </div>
         </Form>
         </Formik>
+        </div>
     </div>
     );
 }
