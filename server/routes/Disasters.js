@@ -35,16 +35,15 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { status } = req.body;
   console.log(status);
-  console.log('blahalsdfjhlasdjfkljasdl;fjs\n');
-  new_status = '';
-  if (status === '1') {
-    new_status = 'Inactive';
-  }
-  else new_status = 'Active';
+  console.log("blahalsdfjhlasdjfkljasdl;fjs\n");
+  new_status = "";
+  if (status === "1") {
+    new_status = "Inactive";
+  } else new_status = "Active";
   console.log(new_status);
   const disaster = await disasters.update(
     {
-      disaster_status: new_status
+      disaster_status: new_status,
     },
     { where: { disaster_id: req.params.id } }
   );
