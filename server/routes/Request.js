@@ -47,7 +47,9 @@ router.put("/:id", async (req, res) => {
 
 // delete request (delete)
 router.delete("/:id", async (req, res) => {
-  const request = await requests.destroy({ where: { request_id: req.params.id } });
+  const request = await requests.destroy({
+    where: { request_id: req.params.id },
+  });
   res.json(request);
 });
 
