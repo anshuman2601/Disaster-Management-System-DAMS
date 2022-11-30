@@ -1,3 +1,4 @@
+import React from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useRef, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
@@ -25,7 +26,7 @@ export default function Map() {
     return (
         <Container>
         <div className="map">
-          <div ref={mapContainer} className="map-container"></div>
+          <div ref={mapContainer} className="map-container" />
         </div>
         </Container>
     );

@@ -37,6 +37,11 @@ function CreateRequest() {
         .min("1969-11-13", "Date is too early"),
     });
 
+    const navigate = useNavigate();
+    const navPages = () => {
+        navigate("/")
+    }
+
     async function submitRequest(data) {
         async function requestPost(data) {
             let { data: response } = await axios.post("http://localhost:3001/requests/create", data);
@@ -44,7 +49,7 @@ function CreateRequest() {
         }
         let response = await requestPost(data);
         if (response === "SUCCESS") {
-            window.location.href = "/";
+            navPages();
         }
     }
 

@@ -2,6 +2,8 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Home from "./Pages/Home";
+import Donor from "./Pages/Donor";
+import Recipient from "./Pages/Recipient";
 import Disaster from "./Pages/Disaster";
 import Items from "./Pages/Items";
 import Request from "./Pages/Request";
@@ -33,6 +35,8 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/donor" element={<Donor />} />
+          <Route path="/recipient" element={<Recipient />} />
           <Route path="/disaster/" element={<Disaster />} />
           <Route path="/items" element={<Items />} />
           <Route path="/request" element={<Request />} />
