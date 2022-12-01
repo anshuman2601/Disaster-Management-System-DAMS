@@ -1,5 +1,7 @@
 import React from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { useRef, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 
@@ -20,12 +22,31 @@ export default function Map() {
             center: [lng, lat],
             zoom: zoom
         });
-    }
-    );
+
+        map.current.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
+    });
+
+    useEffect(() => {
+        if (!map.current) return; // wait for map to initialize
+        map.current.on('move', () => {
+            setLng(map.current.getCenter().lng.toFixed(4));
+            setLat(map.current.getCenter().lat.toFixed(4));
+            setZoom(map.current.getZoom().toFixed(2));
+        });
+    });
+
 
     return (
         <Container>
         <div className="map">
+          <div className="sidebar">
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+            </div>
           <div ref={mapContainer} className="map-container" />
         </div>
         </Container>
