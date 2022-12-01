@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -36,52 +39,55 @@ function Disaster() {
     loadDisasters();
   };
 
-  // create a function to edit a disaster by given id and navigate back to the home page
-
   return (
-    <TableContainer component={Paper}>
-      <Button variant="contained" onClick={() => navigate("/createdisaster")}>
-        Add Event
-      </Button>
-      <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Event</TableCell>
-            <TableCell align="right">Date of Occurrence</TableCell>
-            <TableCell align="right">Location</TableCell>
-            <TableCell align="center">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {disasters.map((disaster, index) => (
-            <TableRow key={disaster.id}>
-              <TableCell component="th" scope="row">
-                {disaster.disaster_id}
-              </TableCell>
-              <TableCell align="right">{disaster.disaster_name}</TableCell>
-              <TableCell align="right">{disaster.disaster_date}</TableCell>
-              <TableCell align="right">{disaster.disaster_location}</TableCell>
-              <TableCell align="right">
-                <Button
-                  variant="outlined"
-                  onClick={() => navigate(`/editdisaster/${disaster.disaster_id}`)}
-                >
-                  Edit
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={() => deleteDisaster(disaster.disaster_id)}
-                >
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={-2} component={Paper}>
+        <TableContainer align="center" component={Paper}>
+          <Typography variant="h4">Disasters</Typography>
+          <Button variant="contained" onClick={() => navigate("/createdisaster")}>
+            Add Event
+          </Button>
+          <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">Event</TableCell>
+                <TableCell align="right">Date of Occurrence</TableCell>
+                <TableCell align="right">Location</TableCell>
+                <TableCell align="center">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {disasters.map((disaster, index) => (
+                <TableRow key={disaster.id}>
+                  <TableCell component="th" scope="row">
+                    {disaster.disaster_id}
+                  </TableCell>
+                  <TableCell align="right">{disaster.disaster_name}</TableCell>
+                  <TableCell align="right">{disaster.disaster_date}</TableCell>
+                  <TableCell align="right">{disaster.disaster_location}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="outlined"
+                      onClick={() => navigate(`/editdisaster/${disaster.disaster_id}`)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => deleteDisaster(disaster.disaster_id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </Box>
   );
 }
 

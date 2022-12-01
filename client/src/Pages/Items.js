@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, Grid } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -36,34 +36,39 @@ function Items() {
     
 
     return (
-        <TableContainer component={Paper}>
-            <Button variant="contained" onClick={() => navigate("/createitem")}>
-                Add Item
-            </Button>
-            <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell align="right">Item</TableCell>
-                        <TableCell align="center">Actions</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {items.map((item, index) => (
-                        <TableRow key={item.id}>
-                            <TableCell component="th" scope="row">
-                                {item.item_id}
-                            </TableCell>
-                            <TableCell align="right">{item.item_name}</TableCell>
-                            <TableCell align="center">
-                                <Button variant="outlined" onClick={() => editItem(item.id)}>Edit</Button>
-                                <Button variant="contained" color="error" onClick={() => deleteItem(item.item_id)}>Delete</Button>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={-2} component={Paper}>
+                <TableContainer align="center" component={Paper}>
+                    <Typography variant="h4">Items</Typography>
+                    <Button size="small" variant="contained" onClick={() => navigate("/createitem")}>
+                        Add Item
+                    </Button>
+                    <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>ID</TableCell>
+                                <TableCell align="right">Item</TableCell>
+                                <TableCell align="center">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {items.map((item, index) => (
+                                <TableRow key={item.id}>
+                                    <TableCell component="th" scope="row">
+                                        {item.item_id}
+                                    </TableCell>
+                                    <TableCell align="right">{item.item_name}</TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="outlined" onClick={() => editItem(item.id)}>Edit</Button>
+                                        <Button variant="contained" color="error" onClick={() => deleteItem(item.item_id)}>Delete</Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+        </Box>
     )
 }
 
