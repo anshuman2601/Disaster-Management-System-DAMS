@@ -43,10 +43,10 @@ function Request() {
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
-                            <TableCell align="right">Event</TableCell>
-                            <TableCell align="right">Date of Occurrence</TableCell>
-                            <TableCell align="right">Location</TableCell>
-                            <TableCell align="center">Actions</TableCell>
+                            <TableCell align="right">User</TableCell>
+                            <TableCell align="right">Disaster</TableCell>
+                            <TableCell align="right">Date Requested</TableCell>
+                            <TableCell align="center">Expiration</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -56,16 +56,19 @@ function Request() {
                                     {request.request_id}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.event}
+                                    {request.request_username}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.date_of_occurrence}
+                                    {request.disaster_id}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.location}
+                                    {request.request_date}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_expiration}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Button variant="contained" onClick={() => navigate(`/items/${request.request_id}`)}>
+                                    <Button variant="contained">
                                         View Items
                                     </Button>
                                 </TableCell>

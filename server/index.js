@@ -15,7 +15,7 @@ app.use("/auth", usersRouter);
 const disastersRouter = require("./routes/Disasters.js");
 app.use("/disasters", disastersRouter);
 
-const requestRouter = require("./routes/Request.js");
+const requestRouter = require("./routes/Requests.js");
 app.use("/request", requestRouter);
 
 const itemsRouter = require("./routes/Items.js");
@@ -23,6 +23,12 @@ app.use("/items", itemsRouter);
 
 const responseRouter = require("./routes/Response.js");
 app.use("/response", responseRouter);
+
+const requestsRouter = require("./routes/Requests");
+app.use("/requests", requestsRouter);
+
+const request_itemsRouter = require("./routes/RequestItems");
+app.use("/request_items", request_itemsRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {
