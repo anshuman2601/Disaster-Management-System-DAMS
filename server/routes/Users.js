@@ -21,6 +21,8 @@ router.post("/", async (req, res) => {
       role: new_role,
       status: "unverified",
     });
+    
+    
     console.log("test");
     email_handler.send_verification(email);
     console.log("email sent");
