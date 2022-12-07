@@ -27,18 +27,6 @@ function Request() {
             console.log(err);
         });
     }
-
-    // useEffect(() => {
-    //     bookings.forEach(({ tourId }) => {
-    //       axios.get(`http://localhost:8070/assignedGuides/get/${tourId}`)
-    //         .then(res => {
-    //           setGuides(guides => ({
-    //             ...guides,
-    //             [tourId]: res.data.guideId,
-    //           }));
-    //         })
-    //     });
-    //   }, [bookings]);
     
     useEffect(() => {
         loadRequests();

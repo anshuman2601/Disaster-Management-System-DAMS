@@ -11,11 +11,11 @@ import { Grid, Container, Typography } from "@mui/material";
 function CreateRequest() {
     const initialValues = {
         id: "1",
-        name: "",
-        type: "",
-        description: "",
+        user: "",
+        disaster_id: "",
         date: "",
-        location: "",
+        expiration: "",
+        items: "",
         //status: "",
       };
 
@@ -77,7 +77,6 @@ function CreateRequest() {
                                         <Grid item xs={12}>
                                             <Textfield name="description" label="Description" />
                                         </Grid>
-
                                         <Grid item xs={12}>
                                             <Textfield type="date" name="date" label="" />
                                         </Grid>
