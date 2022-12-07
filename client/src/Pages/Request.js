@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 function Request() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
+    const [disaster, setDisaster] = useState([]);
     
     async function loadRequests() {
         const result = await axios.get("http://localhost:3001/requests/").then((result) => {
@@ -24,6 +25,14 @@ function Request() {
         }).catch((err) => {
             console.log(err);
         });
+    }
+
+    function getDisasterName(dis_id) {
+        const result = axios.get(`http://localhost:3001/disasters/${dis_id}`).then((result) => {
+            setDisaster(result.data);
+        }).catch((err) => {
+            console.log(err);
+        }); 
     }
 
     useEffect(() => {
@@ -45,12 +54,14 @@ function Request() {
                             <TableCell>ID</TableCell>
                             <TableCell align="right">User</TableCell>
                             <TableCell align="right">Disaster</TableCell>
+                            <TableCell align="right">Location</TableCell>
                             <TableCell align="right">Date Requested</TableCell>
                             <TableCell align="center">Expiration</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {requests.map((request, index) => (
+                            getDisasterName(request.request_disaster_id),
                             <TableRow key={request.id}>
                                 <TableCell component="th" scope="row">
                                     {request.request_id}
@@ -59,7 +70,10 @@ function Request() {
                                     {request.request_username}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.disaster_id}
+                                    {disaster.disaster_name}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {disaster.disaster_location}
                                 </TableCell>
                                 <TableCell align="right">
                                     {request.request_date}
