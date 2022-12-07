@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // cypress test for adding an item to the list
 
 describe('Add Item', () => {
@@ -8,15 +9,10 @@ describe('Add Item', () => {
         cy.get('#password').type('testtest');
         cy.get('#login').first().click();
         cy.get('#add-item').click();
-        cy.get('#item-name').type('test item');
-        cy.get('#item-quantity').type('1');
-        cy.get('#item-unit').type('test unit');
-        cy.get('#item-description').type('test description');
+        cy.get('#item-name').type('Mineral Water Bottle');
+        // cy.get('#item-quantity').type('1');
+        cy.get('#item-description').type('0.5L bottle of water');
         cy.get('#item-submit').click();
-        cy.get('#item-name').should('have.value', '');
-        cy.get('#item-quantity').should('have.value', '');
-        cy.get('#item-unit').should('have.value', '');
-        cy.get('#item-description').should('have.value', '');
     }
     );
 });

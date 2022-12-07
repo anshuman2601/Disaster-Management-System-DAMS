@@ -40,7 +40,7 @@ function Items() {
             <Grid container spacing={-2} component={Paper}>
                 <TableContainer align="center" component={Paper}>
                     <Typography variant="h4">Items</Typography>
-                    <Button size="small" variant="contained" onClick={() => navigate("/createitem")}>
+                    <Button size="small" id="add-item" variant="contained" onClick={() => navigate("/createitem")}>
                         Add Item
                     </Button>
                     <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>

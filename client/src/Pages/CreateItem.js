@@ -51,16 +51,16 @@ function CreateItem() {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield name="name" label="Name" />
+                    <Textfield name="name" label="Name" id="item-name"/>
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield name="description" label="Description" />
+                    <Textfield name="description" label="Description" id="item-description" />
                   </Grid>
 
 
-                  <Grid item xs={12}>
-                    <Button variant="contained" color="primary" type="submit"> Create Item </Button>
+                  <Grid item xs={12} id="item-submit">
+                    <Button variant="contained" color="primary" type="submit" id="item-submit"> Create Item </Button>
                   </Grid>
 
                 </Grid>
