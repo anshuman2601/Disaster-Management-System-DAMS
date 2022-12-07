@@ -4,8 +4,14 @@ const express = require("express");
 const router = express.Router();
 const { disasters } = require("../models");
 
-// get active disasters
+// get all disasters
 router.get("/", async (req, res) => {
+  const disaster = await disasters.findAll();
+  res.json(disaster);
+});
+
+// get active disasters
+router.get("/active", async (req, res) => {
   const disaster = await disasters.findAll({
     where: { disaster_status: "Active" },
   });

@@ -16,7 +16,8 @@ import Button from "@mui/material/Button";
 function Request() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
-    const [disaster, setDisaster] = useState([]);
+    const [disasterNames, setDisasterNames] = useState({});
+    const [disasterLocations, setDisasterLocations] = useState({});
     
     async function loadRequests() {
         const result = await axios.get("http://localhost:3001/requests/").then((result) => {
@@ -27,18 +28,37 @@ function Request() {
         });
     }
 
-    function getDisasterName(dis_id) {
-        const result = axios.get(`http://localhost:3001/disasters/${dis_id}`).then((result) => {
-            setDisaster(result.data);
-        }).catch((err) => {
-            console.log(err);
-        }); 
-    }
-
+    // useEffect(() => {
+    //     bookings.forEach(({ tourId }) => {
+    //       axios.get(`http://localhost:8070/assignedGuides/get/${tourId}`)
+    //         .then(res => {
+    //           setGuides(guides => ({
+    //             ...guides,
+    //             [tourId]: res.data.guideId,
+    //           }));
+    //         })
+    //     });
+    //   }, [bookings]);
+    
     useEffect(() => {
         loadRequests();
     }
     , []);
+
+    useEffect(() => {
+        requests.forEach( ({ request_disaster_id, request_id }) => {
+            axios.get(`http://localhost:3001/disasters/${request_disaster_id}`)
+            .then(res => {
+                setDisasterNames(disasterNames => ({
+                    ...disasterNames, [request_id]: res.data.disaster_name,
+                }));
+                setDisasterLocations(disasterLocations => ({
+                    ...disasterLocations, [request_id]: res.data.disaster_location,
+                }));
+            })
+        });
+    }
+    , [disasterNames, disasterLocations, requests]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -61,7 +81,6 @@ function Request() {
                     </TableHead>
                     <TableBody>
                         {requests.map((request, index) => (
-                            getDisasterName(request.request_disaster_id),
                             <TableRow key={request.id}>
                                 <TableCell component="th" scope="row">
                                     {request.request_id}
@@ -70,10 +89,10 @@ function Request() {
                                     {request.request_username}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {disaster.disaster_name}
+                                    {disasterNames[request.request_id]}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {disaster.disaster_location}
+                                    {disasterLocations[request.request_id]}
                                 </TableCell>
                                 <TableCell align="right">
                                     {request.request_date}
