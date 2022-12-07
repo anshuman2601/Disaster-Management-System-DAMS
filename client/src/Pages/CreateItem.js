@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -18,9 +18,8 @@ function CreateItem() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(4).max(20).required("name is required"),
-    description: Yup.string().min(4).max(30).required("short description is required")
+    description: Yup.string().min(4).max(30).required("short description is required"),
   });
-
 
   // create a function to submit the data to the database using axios and navigate to the home page after the data is posted
   async function submitItem(data) {
@@ -31,7 +30,7 @@ function CreateItem() {
     let response = await itemPost(data);
     console.log(response);
     if (response === "SUCCESS") {
-       navigate("/");
+      navigate("/");
     }
   }
 
@@ -40,32 +39,38 @@ function CreateItem() {
       <Grid item xs={12}>
         <Container maxWidth="sm">
           <div className="Item">
+            <Formik
+              initialValues={initialValues}
+              onSubmit={submitItem}
+              validationSchema={validationSchema}
+            >
+              <Form>
+                <div className="formContainer">
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" component="h1">
+                        {" "}
+                        Create Item{" "}
+                      </Typography>
+                    </Grid>
 
-            <Formik initialValues={initialValues} onSubmit={submitItem} validationSchema={validationSchema}>
-              <Form><div className="formContainer">
+                    <Grid item xs={12}>
+                      <Textfield name="name" label="Name" id="item-name" />
+                    </Grid>
 
-                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Textfield name="description" label="Description" id="item-description" />
+                    </Grid>
 
-                  <Grid item xs={12}>
-                    <Typography variant="h4" component="h1"> Create Item </Typography>
+                    <Grid item xs={12} id="item-submit">
+                      <Button variant="contained" color="primary" type="submit" id="item-submit">
+                        {" "}
+                        Create Item{" "}
+                      </Button>
+                    </Grid>
                   </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield name="name" label="Name" id="item-name"/>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield name="description" label="Description" id="item-description" />
-                  </Grid>
-
-
-                  <Grid item xs={12} id="item-submit">
-                    <Button variant="contained" color="primary" type="submit" id="item-submit"> Create Item </Button>
-                  </Grid>
-
-                </Grid>
-              </div>
-                </Form>
+                </div>
+              </Form>
             </Formik>
           </div>
         </Container>
