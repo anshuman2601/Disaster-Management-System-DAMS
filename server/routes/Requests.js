@@ -27,19 +27,23 @@ router.get("/:id", async (req, res) => {
 
 // create request (post)
 router.post("/create", async (req, res) => {
-  const { username, disaster_id, date, expiration } = req.body;
+  const {  disaster_id, expiration_date, item_id} = req.body;
+
+  console.log(req.body);
+
   let largest_id = await requests.findAll({
     attributes: [ sequelize.fn("MAX", sequelize.col("request_id")) ],
   });
   let id = largest_id.item_id + 1;
+
   const request = await requests.create({
     request_id: id,
-    request_username: username,
+    request_username: "Zach",
     request_disaster_id: disaster_id,
-    request_date: date,
-    request_expiration: expiration
+    request_date: Date.now(),
+    request_expiration: expiration_date
   });
-  res.json(request);
+  res.json("SUCCESS");
 });
 
 // update request (put)
