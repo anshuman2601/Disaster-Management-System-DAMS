@@ -16,6 +16,8 @@ import Button from "@mui/material/Button";
 function Request() {
     const navigate = useNavigate();
     const [requests, setRequests] = useState([]);
+    const [disasterNames, setDisasterNames] = useState({});
+    const [disasterLocations, setDisasterLocations] = useState({});
     
     async function loadRequests() {
         const result = await axios.get("http://localhost:3001/requests/").then((result) => {
@@ -25,11 +27,26 @@ function Request() {
             console.log(err);
         });
     }
-
+    
     useEffect(() => {
         loadRequests();
     }
     , []);
+
+    useEffect(() => {
+        requests.forEach( ({ request_disaster_id, request_id }) => {
+            axios.get(`http://localhost:3001/disasters/${request_disaster_id}`)
+            .then(res => {
+                setDisasterNames(disasterNames => ({
+                    ...disasterNames, [request_id]: res.data.disaster_name,
+                }));
+                setDisasterLocations(disasterLocations => ({
+                    ...disasterLocations, [request_id]: res.data.disaster_location,
+                }));
+            })
+        });
+    }
+    , [disasterNames, disasterLocations, requests]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -43,10 +60,11 @@ function Request() {
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
-                            <TableCell align="right">Event</TableCell>
-                            <TableCell align="right">Date of Occurrence</TableCell>
+                            <TableCell align="right">User</TableCell>
+                            <TableCell align="right">Disaster</TableCell>
                             <TableCell align="right">Location</TableCell>
-                            <TableCell align="center">Actions</TableCell>
+                            <TableCell align="right">Date Requested</TableCell>
+                            <TableCell align="center">Expiration</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -56,16 +74,22 @@ function Request() {
                                     {request.request_id}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.event}
+                                    {request.request_username}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.date_of_occurrence}
+                                    {disasterNames[request.request_id]}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {request.location}
+                                    {disasterLocations[request.request_id]}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_date}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_expiration}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Button variant="contained" onClick={() => navigate(`/items/${request.request_id}`)}>
+                                    <Button variant="contained">
                                         View Items
                                     </Button>
                                 </TableCell>

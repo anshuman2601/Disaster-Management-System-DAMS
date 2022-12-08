@@ -28,9 +28,7 @@ router.post("/create", async (req, res) => {
     item_id: id,
     item_name: name,
     item_description: description,
-    // item_quantity: quantity,
-    // item_status: "Active",
-    // item_disaster_id: 6, // this is a placeholder for now
+    
   });
   res.json("SUCCESS");
 });

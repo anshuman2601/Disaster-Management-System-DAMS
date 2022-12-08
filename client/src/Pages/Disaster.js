@@ -54,6 +54,7 @@ function Disaster() {
                 <TableCell align="right">Event</TableCell>
                 <TableCell align="right">Date of Occurrence</TableCell>
                 <TableCell align="right">Location</TableCell>
+                <TableCell align="right">Status</TableCell>
                 <TableCell align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -66,6 +67,7 @@ function Disaster() {
                   <TableCell align="right">{disaster.disaster_name}</TableCell>
                   <TableCell align="right">{disaster.disaster_date}</TableCell>
                   <TableCell align="right">{disaster.disaster_location}</TableCell>
+                  <TableCell align="right">{disaster.disaster_status}</TableCell>
                   <TableCell align="right">
                     <Button
                       variant="outlined"
