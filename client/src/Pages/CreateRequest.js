@@ -9,35 +9,26 @@ import Textfield from "../Components/Textfield";
 import { Grid, Container, Typography } from "@mui/material";
 
 function CreateRequest() {
-  const initialValues = {
-    id: "1",
-    user: "",
-    disaster_id: "",
-    date: "",
-    expiration: "",
-    items: "",
-    //status: "",
-  };
+    const initialValues = {
+        disaster_id: "",
+        expiration_date: "",
+        item_id: ""
+      };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    type: Yup.string().required("Type is required"),
-    description: Yup.string().required("Description is required"),
-    location: Yup.string().required("Location is required"),
-    //status: Yup.string().required("Status is required"),
-    date: Yup.date()
-      .required("Date is required")
-      .transform(function (value, originalValue) {
-        if (this.isType(value)) {
-          return value;
-        }
-        const result = parse(originalValue, "dd.MM.yyyy", new Date());
-        return result;
-      })
-      .typeError("please enter a valid date")
-      .required()
-      .min("1969-11-13", "Date is too early"),
-  });
+    const validationSchema = Yup.object().shape({
+        disaster_id: Yup.string().required("disaster id required"),
+        item_id: Yup.string().required("item id is required"),
+        expiration_date: Yup.date().required("Date is required").transform(function (value, originalValue) {
+            if (this.isType(value)) {
+                return value;
+            }
+            const result = parse(originalValue, "dd.MM.yyyy", new Date());
+                return result;
+        })
+        .typeError("please enter a valid date")
+        .required()
+        .min("1969-11-13", "Date is too early"),
+    });
 
   const navigate = useNavigate();
   const navPages = () => {
@@ -75,39 +66,31 @@ function CreateRequest() {
                       </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <Textfield name="name" label="Name" />
-                    </Grid>
+                                        <Grid item xs={12}>
+                                            <Textfield name="disaster_id" label="disaster_id" />
+                                        </Grid>
 
-                    <Grid item xs={12}>
-                      <Textfield name="type" label="Type" />
-                    </Grid>
+                                        <Grid item xs={12}>
+                                            <Textfield type="date" name="expiration_date" label="" />
+                                        </Grid>
 
-                    <Grid item xs={12}>
-                      <Textfield name="description" label="Description" />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Textfield type="date" name="date" label="" />
-                    </Grid>
+                                        <Grid item xs={12}>
+                                            <Textfield name="item_id" label="item_id" />
+                                        </Grid>
 
-                    <Grid item xs={12}>
-                      <Textfield name="location" label="Location" />
-                    </Grid>
+                                        <Grid item xs={12}>
+                                            <Button variant="primary" type="submit">Create Request</Button>
+                                        </Grid>
 
-                    <Grid item xs={12}>
-                      <Button variant="primary" type="submit">
-                        Create Request
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Form>
-            </Formik>
-          </div>
-        </Container>
-      </Grid>
-    </Grid>
-  );
+                                    </Grid>
+                                </div>
+                            </Form>
+                        </Formik>
+                    </div>
+                </Container>
+            </Grid>
+        </Grid>
+    );
 }
 
 export default CreateRequest;
