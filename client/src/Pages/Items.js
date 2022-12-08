@@ -60,7 +60,7 @@ function Items() {
                                     <TableCell align="right">{item.item_name}</TableCell>
                                     <TableCell align="center">
                                         <Button variant="outlined" onClick={() => editItem(item.id)}>Edit</Button>
-                                        <Button variant="contained" color="error" onClick={() => deleteItem(item.item_id)}>Delete</Button>
+                                        <Button variant="contained" id="item-delete" color="error" onClick={() => deleteItem(item.item_id)}>Delete</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
