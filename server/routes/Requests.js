@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 
 // create request (post)
 router.post("/create", async (req, res) => {
-  const {  disaster_id, expiration_date, item_id} = req.body;
+  const { disaster_id, expiration_date, item_id } = req.body;
 
   console.log(req.body);
 
@@ -41,7 +41,7 @@ router.post("/create", async (req, res) => {
     request_username: "Zach",
     request_disaster_id: disaster_id,
     request_date: Date.now(),
-    request_expiration: expiration_date
+    request_expiration: expiration_date,
   });
   res.json("SUCCESS");
 });
