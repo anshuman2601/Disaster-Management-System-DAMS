@@ -67,19 +67,19 @@ function CreateRequest() {
                     </Grid>
 
                                         <Grid item xs={12}>
-                                            <Textfield name="disaster_id" label="disaster_id" />
+                                            <Textfield name="disaster_id" id="req-dis-id" label="disaster_id" />
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                            <Textfield type="date" name="expiration_date" label="" />
+                                            <Textfield type="date" id="req-dis-date" name="expiration_date" label="" />
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                            <Textfield name="item_id" label="item_id" />
+                                            <Textfield name="item_id" id="req-item-id" label="item_id" />
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                            <Button variant="primary" type="submit">Create Request</Button>
+                                            <Button variant="primary" id="req-create" type="submit">Create Request</Button>
                                         </Grid>
 
                                     </Grid>

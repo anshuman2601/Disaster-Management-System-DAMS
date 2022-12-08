@@ -55,7 +55,7 @@ function Request() {
       <Grid container spacing={-2} component={Paper}>
         <TableContainer align="center" component={Paper}>
           <Typography variant="h4">Requests</Typography>
-          <Button variant="contained" onClick={() => navigate("/createrequest")}>
+          <Button variant="contained" id="add-request" onClick={() => navigate("/createrequest")}>
             Add Request
           </Button>
           <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>

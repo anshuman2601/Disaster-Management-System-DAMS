@@ -13,7 +13,7 @@ describe('Add Item', () => {
         // cy.get('#item-quantity').type('1');
         cy.get('#item-description').type('0.5L bottle of water');
         cy.get('#item-submit').click();
-        cy.get('#item-delete').click();
+        //cy.get('#item-delete').click(); // delete the item
     }
     );
 });
