@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('Create a Request', () => {
     it('should be able to create a request', () => {
         cy.visit('http://localhost:3000/login');
