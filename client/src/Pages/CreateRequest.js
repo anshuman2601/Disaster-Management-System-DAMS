@@ -9,26 +9,28 @@ import Textfield from "../Components/Textfield";
 import { Grid, Container, Typography } from "@mui/material";
 
 function CreateRequest() {
-    const initialValues = {
-        disaster_id: "",
-        expiration_date: "",
-        item_id: ""
-      };
+  const initialValues = {
+    disaster_id: "",
+    expiration_date: "",
+    item_id: "",
+  };
 
-    const validationSchema = Yup.object().shape({
-        disaster_id: Yup.string().required("disaster id required"),
-        item_id: Yup.string().required("item id is required"),
-        expiration_date: Yup.date().required("Date is required").transform(function (value, originalValue) {
-            if (this.isType(value)) {
-                return value;
-            }
-            const result = parse(originalValue, "dd.MM.yyyy", new Date());
-                return result;
-        })
-        .typeError("please enter a valid date")
-        .required()
-        .min("1969-11-13", "Date is too early"),
-    });
+  const validationSchema = Yup.object().shape({
+    disaster_id: Yup.string().required("disaster id required"),
+    item_id: Yup.string().required("item id is required"),
+    expiration_date: Yup.date()
+      .required("Date is required")
+      .transform(function (value, originalValue) {
+        if (this.isType(value)) {
+          return value;
+        }
+        const result = parse(originalValue, "dd.MM.yyyy", new Date());
+        return result;
+      })
+      .typeError("please enter a valid date")
+      .required()
+      .min("1969-11-13", "Date is too early"),
+  });
 
   const navigate = useNavigate();
   const navPages = () => {
