@@ -67,21 +67,23 @@ function CreateRequest() {
                         Create Request{" "}
                       </Typography>
                     </Grid>
-                      <Grid item xs={12}>
-                        <Textfield name="disaster_id" id="req-dis-id" label="disaster_id" />
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Textfield name="disaster_id" id="req-dis-id" label="disaster_id" />
+                    </Grid>
 
-                      <Grid item xs={12}>
-                        <Textfield type="date" id="req-dis-date" name="expiration_date" label="" />
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Textfield type="date" id="req-dis-date" name="expiration_date" label="" />
+                    </Grid>
 
-                      <Grid item xs={12}>
-                        <Textfield name="item_id" id="req-item-id" label="item_id" />
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Textfield name="item_id" id="req-item-id" label="item_id" />
+                    </Grid>
 
-                      <Grid item xs={12}>
-                        <Button variant="primary" id="req-create" type="submit">Create Request</Button>
-                      </Grid>
+                    <Grid item xs={12}>
+                      <Button variant="primary" id="req-create" type="submit">
+                        Create Request
+                      </Button>
+                    </Grid>
                   </Grid>
                 </div>
               </Form>
@@ -90,7 +92,7 @@ function CreateRequest() {
         </Container>
       </Grid>
     </Grid>
-    );
+  );
 }
 
 export default CreateRequest;
