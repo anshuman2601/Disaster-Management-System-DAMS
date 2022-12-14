@@ -30,6 +30,12 @@ app.use("/requests", requestsRouter);
 const request_itemsRouter = require("./routes/RequestItems");
 app.use("/request_items", request_itemsRouter);
 
+const pledgesRouter = require("./routes/Pledges");
+app.use("/pledges", requestsRouter);
+
+const pledge_itemsRouter = require("./routes/PledgeItems");
+app.use("/pledge_items", requestsRouter);
+
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {
     console.log("Server running on port 3001");
