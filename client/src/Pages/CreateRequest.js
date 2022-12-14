@@ -37,6 +37,7 @@ function CreateRequest() {
     }
 
     const [items, setItems] = useState([]);
+    const [disasters, setDisasters] = useState([]);
 
     async function loadItems() {
         const result = await axios.get("http://localhost:3001/items/").then((result) => {
@@ -46,6 +47,18 @@ function CreateRequest() {
             console.log(err);
         });
     }
+
+    async function loadDisasters() {
+        const result = await axios
+          .get("http://localhost:3001/disasters/")
+          .then((result) => {
+            setDisasters(result.data);
+            console.log("Result", disasters);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
 
     async function submitRequest(data) {
         async function requestPost(data) {
@@ -60,6 +73,7 @@ function CreateRequest() {
 
     useEffect(() => {
         loadItems();
+        loadDisasters();
     } , []);
 
     return (
@@ -76,7 +90,16 @@ function CreateRequest() {
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                            <Textfield name="disaster_id" label="disaster_id" />
+                                        <FormControl fullWidth>
+                                              <InputLabel id="disaster_id">Disaster</InputLabel>
+                                                <Select labelId="disasterSelectLabel" id="disasterSelect" value=''>
+                                                    {disasters.map((disaster) => (
+                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id}>
+                                                        {disaster.disaster_name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
                                         </Grid>
 
                                         <Grid item xs={12}>
@@ -93,8 +116,6 @@ function CreateRequest() {
                                                         </MenuItem>
                                                     ))}
                                                 </Select>
-
-            
                                             </FormControl>
                                             </Grid>                                   
                                      
