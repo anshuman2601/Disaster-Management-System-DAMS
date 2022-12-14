@@ -7,6 +7,7 @@ import parse from "date-fns/parse";
 import Button from "../Components/Button";
 import Textfield from "../Components/Textfield";
 import { Grid, Container, Typography, Select, FormControl, InputLabel, MenuItem } from "@mui/material";
+//import { Select } from '../Components/Select'
 
 
 function CreateRequest() {
@@ -36,8 +37,21 @@ function CreateRequest() {
         navigate("/")
     }
 
-    const [items, setItems] = useState([]);
     const [disasters, setDisasters] = useState([]);
+
+  async function loadDisasters() {
+    const result = await axios
+      .get("http://localhost:3001/disasters/")
+      .then((result) => {
+        setDisasters(result.data);
+        console.log("Result", disasters);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+    const [items, setItems] = useState([]);
 
     async function loadItems() {
         const result = await axios.get("http://localhost:3001/items/").then((result) => {
@@ -47,18 +61,6 @@ function CreateRequest() {
             console.log(err);
         });
     }
-
-    async function loadDisasters() {
-        const result = await axios
-          .get("http://localhost:3001/disasters/")
-          .then((result) => {
-            setDisasters(result.data);
-            console.log("Result", disasters);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
 
     async function submitRequest(data) {
         async function requestPost(data) {
@@ -90,17 +92,19 @@ function CreateRequest() {
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                        <FormControl fullWidth>
+                                            <FormControl fullWidth>
                                               <InputLabel id="disaster_id">Disaster</InputLabel>
-                                                <Select labelId="disasterSelectLabel" id="disasterSelect" value=''>
+                                                <Select labelId="disaster_id" id="disaster_id" value='' >
                                                     {disasters.map((disaster) => (
                                                         <MenuItem key={disaster.disaster_id} value={disaster.disaster_id}>
                                                         {disaster.disaster_name}
                                                         </MenuItem>
                                                     ))}
                                                 </Select>
+
+            
                                             </FormControl>
-                                        </Grid>
+                                        </Grid> 
 
                                         <Grid item xs={12}>
                                             <Textfield type="date" name="expiration_date" label="" />
@@ -109,15 +113,17 @@ function CreateRequest() {
                                         <Grid item xs={12}>
                                             <FormControl fullWidth>
                                               <InputLabel id="item_id">Item</InputLabel>
-                                                <Select labelId="itemSelectLabel" id="itemSelect" value=''>
+                                                <Select labelId="item_id" id="item_id" value=''>
                                                     {items.map((item) => (
                                                         <MenuItem key={item.item_id} value={item.item_id}>
                                                         {item.item_name}
                                                         </MenuItem>
                                                     ))}
                                                 </Select>
+
+            
                                             </FormControl>
-                                            </Grid>                                   
+                                        </Grid>                                   
                                      
 
                                         <Grid item xs={12}>
