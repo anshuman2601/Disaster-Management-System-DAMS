@@ -46,7 +46,7 @@ function Request() {
             })
         });
     }
-    , [disasterNames, disasterLocations, requests]);
+    , [requests]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>
