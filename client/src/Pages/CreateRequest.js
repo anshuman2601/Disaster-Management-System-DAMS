@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import parse from "date-fns/parse";
 import Button from "../Components/Button";
 import Textfield from "../Components/Textfield";
+//import Select from "../Components/Select";
 import { Grid, Container, Typography, Select, FormControl, InputLabel, MenuItem } from "@mui/material";
 
 
@@ -92,7 +93,7 @@ function CreateRequest() {
                                         <Grid item xs={12}>
                                         <FormControl fullWidth>
                                               <InputLabel id="disaster_id">Disaster</InputLabel>
-                                                <Select labelId="disasterSelectLabel" id="disasterSelect" value=''>
+                                                <Select label="disasterSelectLabel" id="disasterSelect" value=''>
                                                     {disasters.map((disaster) => (
                                                         <MenuItem key={disaster.disaster_id} value={disaster.disaster_id}>
                                                         {disaster.disaster_name}
@@ -109,7 +110,7 @@ function CreateRequest() {
                                         <Grid item xs={12}>
                                             <FormControl fullWidth>
                                               <InputLabel id="item_id">Item</InputLabel>
-                                                <Select labelId="itemSelectLabel" id="itemSelect" value=''>
+                                                <Select label="itemSelectLabel" id="itemSelect" value=''>
                                                     {items.map((item) => (
                                                         <MenuItem key={item.item_id} value={item.item_id}>
                                                         {item.item_name}
