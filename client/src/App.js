@@ -9,6 +9,8 @@ import Disaster from "./Pages/Disaster";
 import Items from "./Pages/Items";
 import Request from "./Pages/Request";
 import Response from "./Pages/Response";
+import Pledge from "./Pages/Pledge";
+import CreatePledge from "Pages/CreatePledge";
 import Registration from "./Pages/Registration";
 import Verification from "./Pages/Verification";
 import Login from "./Pages/Login";
@@ -42,6 +44,8 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/request" element={<Request />} />
           <Route path="/response" element={<Response />} />
+          <Route path="/pledge" element={<Pledge />} />
+          <Route path="/createpledge" element={<CreatePledge />} />
           <Route path="/createdisaster" element={<CreateDisaster />} />
           <Route path="/createitem" element={<CreateItem />} />
           <Route path="/createrequest" element={<CreateRequest />} />
