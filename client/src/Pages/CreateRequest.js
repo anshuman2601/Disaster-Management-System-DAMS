@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import parse from "date-fns/parse";
 import Button from "../Components/Button";
 import Textfield from "../Components/Textfield";
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container, Typography, Select, FormControl, InputLabel, MenuItem } from "@mui/material";
+
 
 function CreateRequest() {
     const initialValues = {
@@ -35,6 +36,17 @@ function CreateRequest() {
         navigate("/")
     }
 
+    const [items, setItems] = useState([]);
+
+    async function loadItems() {
+        const result = await axios.get("http://localhost:3001/items/").then((result) => {
+            setItems(result.data);
+            console.log("Result", items);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     async function submitRequest(data) {
         async function requestPost(data) {
             let { data: response } = await axios.post("http://localhost:3001/requests/create", data);
@@ -45,6 +57,10 @@ function CreateRequest() {
             navPages();
         }
     }
+
+    useEffect(() => {
+        loadItems();
+    } , []);
 
     return (
         <Grid container spacing={3}>
@@ -68,8 +84,20 @@ function CreateRequest() {
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                            <Textfield name="item_id" label="item_id" />
-                                        </Grid>
+                                            <FormControl fullWidth>
+                                              <InputLabel id="item_id">Item</InputLabel>
+                                                <Select labelId="itemSelectLabel" id="itemSelect" value=''>
+                                                    {items.map((item) => (
+                                                        <MenuItem key={item.item_id} value={item.item_id}>
+                                                        {item.item_name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+
+            
+                                            </FormControl>
+                                            </Grid>                                   
+                                     
 
                                         <Grid item xs={12}>
                                             <Button variant="primary" type="submit">Create Request</Button>
