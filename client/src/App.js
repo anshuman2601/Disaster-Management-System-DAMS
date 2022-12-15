@@ -1,5 +1,5 @@
 import "./App.css";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import React from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -9,6 +9,8 @@ import Disaster from "./Pages/Disaster";
 import Items from "./Pages/Items";
 import Request from "./Pages/Request";
 import Response from "./Pages/Response";
+import Pledge from "./Pages/Pledge";
+import CreatePledge from "Pages/CreatePledge";
 import Registration from "./Pages/Registration";
 import Verification from "./Pages/Verification";
 import Login from "./Pages/Login";
@@ -21,6 +23,7 @@ import EditRequest from "./Pages/EditRequest";
 import CreateResponse from "./Pages/CreateResponse";
 import EditResponse from "./Pages/EditResponse";
 import Map from "./Pages/Map";
+import ViewItemsRequests from "./Pages/ViewItemsRequests";
 
 function App() {
   return (
@@ -42,10 +45,13 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/request" element={<Request />} />
           <Route path="/response" element={<Response />} />
+          <Route path="/pledge" element={<Pledge />} />
+          <Route path="/createpledge" element={<CreatePledge />} />
           <Route path="/createdisaster" element={<CreateDisaster />} />
           <Route path="/createitem" element={<CreateItem />} />
           <Route path="/createrequest" element={<CreateRequest />} />
           <Route path="/createresponse" element={<CreateResponse />} />
+          <Route path="/viewrequestitems/:id" element={<ViewItemsRequests />} />
           <Route path="/editdisaster/:id" element={<EditDisaster />} />
           <Route path="/editrequest" element={<EditRequest />} />
           <Route path="/editresponse" element={<EditResponse />} />

@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 
 // create request (post)
 router.post("/create", async (req, res) => {
-  const {  disaster_id, expiration_date, item_id} = req.body;
+  const { disaster_id, expiration_date, item_name, quantity } = req.body;
 
   console.log(req.body);
 
@@ -41,7 +41,9 @@ router.post("/create", async (req, res) => {
     request_username: "Zach",
     request_disaster_id: disaster_id,
     request_date: Date.now(),
-    request_expiration: expiration_date
+    request_expiration: expiration_date,
+    request_item: item_name,
+    request_item_quant: quantity,
   });
   res.json("SUCCESS");
 });
@@ -62,10 +64,11 @@ router.post("/create", async (req, res) => {
 //   res.json(request);
 // });
 
-// delete request (delete)
-// router.delete("/:id", async (req, res) => {
-//   const request = await requests.destroy({ where: { request_id: req.params.id } });
-//   res.json(request);
-// });
+router.delete("/:id", async (req, res) => {
+  const request = await requests.destroy({
+    where: { request_id: req.params.id },
+  });
+  res.json(request);
+});
 
 module.exports = router;

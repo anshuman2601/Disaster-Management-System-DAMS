@@ -14,12 +14,13 @@ function Home() {
       <div className="home-page">
         <Grid container spacing={2}>
           <Grid item xs={12} align="center">
-            <Typography><h1>DAMS Admin Dashboard</h1></Typography>
+            <Typography>
+              <h1>DAMS Dashboard</h1>
+            </Typography>
           </Grid>
-          </Grid>
+        </Grid>
         <Disaster />
         <Items />
-        <Request />
         <Map />
       </div>
     </Box>

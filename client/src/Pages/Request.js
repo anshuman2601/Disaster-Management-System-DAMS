@@ -19,22 +19,6 @@ function Request() {
   const [disasterNames, setDisasterNames] = useState({});
   const [disasterLocations, setDisasterLocations] = useState({});
 
-  async function loadRequests() {
-    const result = await axios
-      .get("http://localhost:3001/requests/")
-      .then((result) => {
-        setRequests(result.data);
-        //console.log("Result", requests);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  useEffect(() => {
-    loadRequests();
-  }, []);
-
   useEffect(() => {
     requests.forEach(({ request_disaster_id, request_id }) => {
       axios.get(`http://localhost:3001/disasters/${request_disaster_id}`).then((res) => {
@@ -48,14 +32,19 @@ function Request() {
         }));
       });
     });
-  }, [disasterNames, disasterLocations, requests]);
+  }, [requests]);
+
+  let deleteRequest = async (id) => {
+    await axios.delete(`http://localhost:3001/requests/${id}`);
+    loadRequests();
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={-2} component={Paper}>
         <TableContainer align="center" component={Paper}>
           <Typography variant="h4">Requests</Typography>
-          <Button variant="contained" id="add-request" onClick={() => navigate("/createrequest")}>
+          <Button variant="contained" onClick={() => navigate("/createrequest")}>
             Add Request
           </Button>
           <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
@@ -67,6 +56,8 @@ function Request() {
                 <TableCell align="right">Location</TableCell>
                 <TableCell align="right">Date Requested</TableCell>
                 <TableCell align="center">Expiration</TableCell>
+                <TableCell align="center">Item</TableCell>
+                <TableCell align="center">Quantity</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -80,8 +71,12 @@ function Request() {
                   <TableCell align="right">{disasterLocations[request.request_id]}</TableCell>
                   <TableCell align="right">{request.request_date}</TableCell>
                   <TableCell align="right">{request.request_expiration}</TableCell>
+                  <TableCell align="right">{request.request_item}</TableCell>
+                  <TableCell align="right">{request.request_item_quant}</TableCell>
                   <TableCell align="center">
-                    <Button variant="contained">View Items</Button>
+                    <Button variant="contained" onClick={() => deleteRequest(request.request_id)}>
+                      Archive
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

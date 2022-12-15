@@ -7,30 +7,31 @@ import Button from "../Components/Button";
 import Textfield from "../Components/Textfield";
 import { Grid, Container, Typography } from "@mui/material";
 
-function CreateItem() {
+function CreatePledge() {
   const navigate = useNavigate();
-  const [item, setItem] = useState([]);
+  const [pledge, setPledge] = useState([]);
 
   const initialValues = {
-    name: "",
-    description: "",
+    pledge_location: "",
+    pledge_items: "",
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(4).max(20).required("name is required"),
-    description: Yup.string().min(4).max(30).required("short description is required"),
+    pledge_location: Yup.string().min(1).max(20).required("name is required"),
+    pledge_items: Yup.string().min(1).max(30).required("short description is required"),
   });
 
   // create a function to submit the data to the database using axios and navigate to the home page after the data is posted
-  async function submitItem(data) {
-    async function itemPost(data) {
-      let { data: response } = await axios.post("http://localhost:3001/items/create", data);
+  async function submitPledge(data) {
+    async function pledgePost(data) {
+      let { data: response } = await axios.post("http://localhost:3001/pledges/create", data);
       return response;
     }
-    let response = await itemPost(data);
+    console.log(data);
+    let response = await pledgePost(data);
     console.log(response);
     if (response === "SUCCESS") {
-      navigate("/");
+      navigate("/donor");
     }
   }
 
@@ -38,10 +39,10 @@ function CreateItem() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Container maxWidth="sm">
-          <div className="Item">
+          <div className="Pledge">
             <Formik
               initialValues={initialValues}
-              onSubmit={submitItem}
+              onSubmit={submitPledge}
               validationSchema={validationSchema}
             >
               <Form>
@@ -50,22 +51,22 @@ function CreateItem() {
                     <Grid item xs={12}>
                       <Typography variant="h4" component="h1">
                         {" "}
-                        Create Item{" "}
+                        Create Pledge{" "}
                       </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
-                      <Textfield name="name" label="Name" />
+                      <Textfield name="location" label="Location" />
                     </Grid>
 
                     <Grid item xs={12}>
-                      <Textfield name="description" label="Description" />
+                      <Textfield name="pledgeitems" label="Items" />
                     </Grid>
 
                     <Grid item xs={12}>
                       <Button variant="contained" color="primary" type="submit">
                         {" "}
-                        Create Item{" "}
+                        Create Pledge{" "}
                       </Button>
                     </Grid>
                   </Grid>
@@ -79,4 +80,4 @@ function CreateItem() {
   );
 }
 
-export default CreateItem;
+export default CreatePledge;

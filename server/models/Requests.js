@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     request_disaster_id: { type: DataTypes.INTEGER, allowNull: false },
     request_date: { type: DataTypes.DATEONLY, allowNull: false },
     request_expiration: { type: DataTypes.DATEONLY, allowNull: false },
+    request_item: { type: DataTypes.STRING, allowNull: false },
+    request_item_quant: { type: DataTypes.STRING, allowNull: false },
   });
 
   return Requests;
