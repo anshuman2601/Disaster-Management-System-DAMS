@@ -19,7 +19,6 @@ function Home() {
           </Grid>
         <Disaster />
         <Items />
-        <Request />
         <Map />
       </div>
     </Box>

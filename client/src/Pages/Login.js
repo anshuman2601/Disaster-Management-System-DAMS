@@ -16,16 +16,22 @@ function Login() {
   });
 
   const navigate = useNavigate();
-  const navPages = () => {
-    navigate("/")
+  const navPagesRec = () => {
+    navigate("/recipient")
   }
 
   const login = async (data) => {
     //const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
       console.log(response.data);
-      if (response.data === "YOU LOGGED IN!!!") {
-        navPages();
+      if (response.data === "Recipient") {
+        navPagesRec();
+      }
+      else if (response.data === "Donor") {
+        navigate("/donor")
+      }
+      else if (response.data === "Admin") {
+        navigate("/")
       }
     });
   };

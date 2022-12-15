@@ -18,8 +18,8 @@ function CreateRequest() {
       };
 
     const validationSchema = Yup.object().shape({
-        disaster_id: Yup.string().required("disaster id required"),
-        item_id: Yup.string().required("item id is required"),
+        // disaster_id: Yup.string().required("disaster id required"),
+        // item_id: Yup.string().required("item id is required"),
         expiration_date: Yup.date().required("Date is required").transform(function (value, originalValue) {
             if (this.isType(value)) {
                 return value;
@@ -116,7 +116,7 @@ function CreateRequest() {
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-
+                                        
                                         <Grid item xs={12}>
                                             <Textfield type="date" name="expiration_date" label="" />
                                         </Grid>

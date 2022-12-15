@@ -65,6 +65,7 @@ function Request() {
                             <TableCell align="right">Location</TableCell>
                             <TableCell align="right">Date Requested</TableCell>
                             <TableCell align="center">Expiration</TableCell>
+                            <TableCell align="center">Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

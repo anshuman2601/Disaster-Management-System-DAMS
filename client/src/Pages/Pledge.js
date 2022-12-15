@@ -59,9 +59,6 @@ function Pledge() {
                                     </TableCell>
                                     <TableCell align="right">{pledge.pledge_location}</TableCell>
                                     <TableCell align="center">
-                                        <Button size="small" variant="outlined" onClick={() => editPledge(pledge.pledge_id)}>
-                                            Edit
-                                        </Button>
                                         <Button size="small" variant="outlined" color="error" onClick={() => deletePledge(pledge.pledge_id)}>
                                             Delete
                                         </Button>
