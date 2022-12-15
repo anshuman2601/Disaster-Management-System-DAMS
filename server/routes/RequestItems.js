@@ -2,29 +2,29 @@
 
 const express = require("express");
 const router = express.Router();
-const { request_items } = require("../models");
+const { RequestItems } = require("../models");
 
 // get all requests (get)
 router.get("/", async (req, res) => {
-  const request = await request_items.findAll();
+  const request = await RequestItems.findAll();
   res.json(request);
 });
 
 // get items of a request by id
 router.get("/:req_id", async (req, res) => {
-  const request = await request_items.findall({
-    where: { request_id: req.params.req_id},
-  } );
+  const request = await RequestItems.findAll({
+    where: { request_id: req.params.req_id },
+  });
   res.json(request);
 });
 
 // create request (post)
 router.post("/create", async (req, res) => {
   const { rq_id, it_id, quant } = req.body;
-  const request = await request_items.create({
+  const request = await RequestItems.create({
     request_id: rq_id,
     item_id: it_id,
-    quantity: quant
+    quantity: quant,
   });
   res.json("SUCCESS");
 });
@@ -32,7 +32,7 @@ router.post("/create", async (req, res) => {
 // // update request (put)
 // router.put("/:id", async (req, res) => {
 //   const { name, description, quantity, status, request_id } = req.body;
-//   const request = await request_items.update(
+//   const request = await RequestItems.update(
 //     {
 //       name: name,
 //       description: description,

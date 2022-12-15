@@ -14,24 +14,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 function Request() {
-    const navigate = useNavigate();
-    const [requests, setRequests] = useState([]);
-    const [disasterNames, setDisasterNames] = useState({});
-    const [disasterLocations, setDisasterLocations] = useState({});
-    
-    async function loadRequests() {
-        const result = await axios.get("http://localhost:3001/requests/").then((result) => {
-            setRequests(result.data);
-            //console.log("Result", requests);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-    
-    useEffect(() => {
-        loadRequests();
-    }
-    , []);
+  const navigate = useNavigate();
+  const [requests, setRequests] = useState([]);
+  const [disasterNames, setDisasterNames] = useState({});
+  const [disasterLocations, setDisasterLocations] = useState({});
 
     useEffect(() => {
         requests.forEach( ({ request_disaster_id, request_id }) => {
