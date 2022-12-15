@@ -7,16 +7,22 @@ const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
   const { username, password, email, first_name, last_name, role } = req.body;
+  new_role = "";
+  if (role === "0") {
+    new_role = "Donor";
+  } else new_role = "Recipient";
   bcrypt.hash(password, 10).then((hash) => {
     users.create({
       username: username,
-      password: password,
+      password: hash,
       email: email,
       first_name: first_name,
       last_name: last_name,
-      role: role,
+      role: new_role,
       status: "unverified",
     });
+    
+    
     console.log("test");
     email_handler.send_verification(email);
     console.log("email sent");
