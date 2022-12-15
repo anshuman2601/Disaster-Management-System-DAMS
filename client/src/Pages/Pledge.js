@@ -47,7 +47,7 @@ function Pledge() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>ID</TableCell>
-                                <TableCell align="right">Pledge</TableCell>
+                                <TableCell align="right">Pledge Location</TableCell>
                                 <TableCell align="center">Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -57,13 +57,16 @@ function Pledge() {
                                     <TableCell component="th" scope="row">
                                         {pledge.pledge_id}
                                     </TableCell>
-                                    <TableCell align="right">{pledge.pledge_amount}</TableCell>
+                                    <TableCell align="right">{pledge.pledge_location}</TableCell>
                                     <TableCell align="center">
-                                        <Button size="small" variant="contained" onClick={() => editPledge(pledge.pledge_id)}>
+                                        <Button size="small" variant="outlined" onClick={() => editPledge(pledge.pledge_id)}>
                                             Edit
                                         </Button>
-                                        <Button size="small" variant="contained" onClick={() => deletePledge(pledge.pledge_id)}>
+                                        <Button size="small" variant="outlined" color="error" onClick={() => deletePledge(pledge.pledge_id)}>
                                             Delete
+                                        </Button>
+                                        <Button size="small" variant="outlined" color="secondary" onClick={() => navigate("/pledgeitems")}>
+                                            View Items
                                         </Button>
                                     </TableCell>
                                 </TableRow>

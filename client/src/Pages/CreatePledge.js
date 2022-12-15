@@ -12,23 +12,24 @@ function CreatePledge() {
   const [pledge, setPledge] = useState([]);
 
   const initialValues = {
-    name: "",
-    description: "",
+    location: "",
+    items: "",
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(4).max(20).required("name is required"),
-    description: Yup.string().min(4).max(30).required("short description is required")
+    location: Yup.string().min(4).max(20).required("name is required"),
+    items: Yup.string().min(4).max(30).required("short description is required")
   });
 
 
   // create a function to submit the data to the database using axios and navigate to the home page after the data is posted
   async function submitPledge(data) {
-    async function itemPost(data) {
+    async function pledgePost(data) {
       let { data: response } = await axios.post("http://localhost:3001/pledges/create", data);
       return response;
     }
-    let response = await itemPost(data);
+    console.log(data);
+    let response = await pledgePost(data);
     console.log(response);
     if (response === "SUCCESS") {
        navigate("/donor");
