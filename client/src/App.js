@@ -23,7 +23,7 @@ import EditRequest from "./Pages/EditRequest";
 import CreateResponse from "./Pages/CreateResponse";
 import EditResponse from "./Pages/EditResponse";
 import Map from "./Pages/Map";
-import ViewItemsRequests from "./Pages/ViewItemsRequests"
+import ViewItemsRequests from "./Pages/ViewItemsRequests";
 
 function App() {
   return (

@@ -18,10 +18,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
-
-
-
-
 function ViewItemsRequests() {
   const navigate = useNavigate();
   const [request, setRequest] = useState([]);
@@ -58,32 +54,31 @@ function ViewItemsRequests() {
     loadRequestItemsIds(id);
   }, []);
 
-
-return (
-  <Box sx={{ flexGrow: 1 }}>
-  <Grid container spacing={-2} component={Paper}>
-    <TableContainer align="center" component={Paper}>
-      <Typography variant="h4">Items</Typography>
-      <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Name</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {itemIds.map((item, index) => (
-            <TableRow key={item.item_id}>
-              <TableCell component="th" scope="row">
-                {item.item_id}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </Grid>
-</Box>
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={-2} component={Paper}>
+        <TableContainer align="center" component={Paper}>
+          <Typography variant="h4">Items</Typography>
+          <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">Name</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {itemIds.map((item, index) => (
+                <TableRow key={item.item_id}>
+                  <TableCell component="th" scope="row">
+                    {item.item_id}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </Box>
   );
 }
 
