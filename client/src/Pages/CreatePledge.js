@@ -12,13 +12,13 @@ function CreatePledge() {
   const [pledge, setPledge] = useState([]);
 
   const initialValues = {
-    location: "",
-    items: "",
+    pledge_location: "",
+    pledge_items: "",
   };
 
   const validationSchema = Yup.object().shape({
-    location: Yup.string().min(4).max(20).required("name is required"),
-    items: Yup.string().min(4).max(30).required("short description is required")
+    pledge_location: Yup.string().min(1).max(20).required("name is required"),
+    pledge_items: Yup.string().min(1).max(30).required("short description is required")
   });
 
 

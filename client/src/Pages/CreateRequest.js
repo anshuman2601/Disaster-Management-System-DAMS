@@ -40,6 +40,9 @@ function CreateRequest() {
     const [items, setItems] = useState([]);
     const [disasters, setDisasters] = useState([]);
 
+    const [selectedDisaster, setSelectedDisaster] = useState('');
+    const [selectedItem, setSelectedItem] = useState('');
+
     async function loadItems() {
         const result = await axios.get("http://localhost:3001/items/").then((result) => {
             setItems(result.data);
@@ -66,6 +69,7 @@ function CreateRequest() {
             let { data: response } = await axios.post("http://localhost:3001/requests/create", data);
             return response;
         }
+        console.log(data);
         let response = await requestPost(data);
         if (response === "SUCCESS") {
             navPages();
@@ -77,12 +81,22 @@ function CreateRequest() {
         loadDisasters();
     } , []);
 
+    const disasterSelectionHandler = (event) => {
+        initialValues.disaster_id = event.target.value
+        setSelectedDisaster(event.target.value)
+    }
+
+    const itemSelectionHandler = (event) => {
+        initialValues.item_id = event.target.value
+        setSelectedItem(event.target.value)
+    }
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
                 <Container maxWidth="sm">
                     <div className="Request">
-                        <Formik initialValues={initialValues} onSubmit={submitRequest} validationSchema={validationSchema}>
+                        <Formik initialValues={initialValues} onSubmit={submitRequest} validationSchema={validationSchema} enableReinitialize={true}>
                             <Form>
                                 <div className="formContainer">
                                     <Grid container spacing={2}>
@@ -92,10 +106,10 @@ function CreateRequest() {
 
                                         <Grid item xs={12}>
                                         <FormControl fullWidth>
-                                              <InputLabel id="disaster_id">Disaster</InputLabel>
-                                                <Select label="disasterSelectLabel" id="disasterSelect" value=''>
+                                              <InputLabel id="disaster_id" name="disaster_id">Disaster</InputLabel>
+                                                <Select label="disaster_id" id="disaster_id" value={selectedDisaster} onChange={disasterSelectionHandler}>
                                                     {disasters.map((disaster) => (
-                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id}>
+                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id.toString()}>
                                                         {disaster.disaster_name}
                                                         </MenuItem>
                                                     ))}
@@ -109,8 +123,8 @@ function CreateRequest() {
 
                                         <Grid item xs={12}>
                                             <FormControl fullWidth>
-                                              <InputLabel id="item_id">Item</InputLabel>
-                                                <Select label="itemSelectLabel" id="itemSelect" value=''>
+                                              <InputLabel id="item_id" name="item_id">Item</InputLabel>
+                                                <Select label="item_id" id="item_id" value={selectedItem} onChange={itemSelectionHandler}>
                                                     {items.map((item) => (
                                                         <MenuItem key={item.item_id} value={item.item_id}>
                                                         {item.item_name}
