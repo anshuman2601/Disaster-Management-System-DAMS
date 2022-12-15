@@ -13,8 +13,8 @@ router.get("/", async (req, res) => {
 // get items of a request by id
 router.get("/:req_id", async (req, res) => {
   const request = await RequestItems.findAll({
-    where: { request_id: req.params.req_id},
-  } );
+    where: { request_id: req.params.req_id },
+  });
   res.json(request);
 });
 
@@ -24,7 +24,7 @@ router.post("/create", async (req, res) => {
   const request = await RequestItems.create({
     request_id: rq_id,
     item_id: it_id,
-    quantity: quant
+    quantity: quant,
   });
   res.json("SUCCESS");
 });

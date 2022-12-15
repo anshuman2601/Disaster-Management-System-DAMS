@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 router.get("/users/:username", async (req, res) => {
   const request = await requests.findAll({
     where: { request_username: req.params.username },
-  } );
+  });
   res.json(request);
 });
 
@@ -32,7 +32,7 @@ router.post("/create", async (req, res) => {
   console.log(req.body);
 
   let largest_id = await requests.findAll({
-    attributes: [ sequelize.fn("MAX", sequelize.col("request_id")) ],
+    attributes: [sequelize.fn("MAX", sequelize.col("request_id"))],
   });
   let id = largest_id.item_id + 1;
 
@@ -43,7 +43,7 @@ router.post("/create", async (req, res) => {
     request_date: Date.now(),
     request_expiration: expiration_date,
     request_item: item_name,
-    request_item_quant: quantity
+    request_item_quant: quantity,
   });
   res.json("SUCCESS");
 });
@@ -65,7 +65,9 @@ router.post("/create", async (req, res) => {
 // });
 
 router.delete("/:id", async (req, res) => {
-  const request = await requests.destroy({ where: { request_id: req.params.id } });
+  const request = await requests.destroy({
+    where: { request_id: req.params.id },
+  });
   res.json(request);
 });
 

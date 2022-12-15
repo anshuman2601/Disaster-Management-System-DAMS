@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 router.get("/users/:username", async (req, res) => {
   const pledge = await pledges.findAll({
     where: { pledge_username: req.params.username },
-  } );
+  });
   res.json(pledge);
 });
 
@@ -27,12 +27,12 @@ router.get("/:id", async (req, res) => {
 
 // create pledge (post)
 router.post("/create", async (req, res) => {
-  const { location, item_id} = req.body;
+  const { location, item_id } = req.body;
 
   console.log(req.body);
 
   let largest_id = await pledges.findAll({
-    attributes: [ sequelize.fn("MAX", sequelize.col("pledge_id")) ],
+    attributes: [sequelize.fn("MAX", sequelize.col("pledge_id"))],
   });
   let id = largest_id.item_id + 1;
 
@@ -40,10 +40,9 @@ router.post("/create", async (req, res) => {
     pledge_id: id,
     pledge_username: "Zach",
     pledge_location: location,
-    pledge_status: 'Open'
+    pledge_status: "Open",
   });
   res.json("SUCCESS");
 });
-
 
 module.exports = router;

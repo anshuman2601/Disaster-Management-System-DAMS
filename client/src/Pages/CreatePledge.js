@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -18,9 +18,8 @@ function CreatePledge() {
 
   const validationSchema = Yup.object().shape({
     pledge_location: Yup.string().min(1).max(20).required("name is required"),
-    pledge_items: Yup.string().min(1).max(30).required("short description is required")
-  })
-
+    pledge_items: Yup.string().min(1).max(30).required("short description is required"),
+  });
 
   // create a function to submit the data to the database using axios and navigate to the home page after the data is posted
   async function submitPledge(data) {
@@ -32,7 +31,7 @@ function CreatePledge() {
     let response = await pledgePost(data);
     console.log(response);
     if (response === "SUCCESS") {
-       navigate("/donor");
+      navigate("/donor");
     }
   }
 
@@ -41,32 +40,38 @@ function CreatePledge() {
       <Grid item xs={12}>
         <Container maxWidth="sm">
           <div className="Pledge">
+            <Formik
+              initialValues={initialValues}
+              onSubmit={submitPledge}
+              validationSchema={validationSchema}
+            >
+              <Form>
+                <div className="formContainer">
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" component="h1">
+                        {" "}
+                        Create Pledge{" "}
+                      </Typography>
+                    </Grid>
 
-            <Formik initialValues={initialValues} onSubmit={submitPledge} validationSchema={validationSchema}>
-              <Form><div className="formContainer">
+                    <Grid item xs={12}>
+                      <Textfield name="location" label="Location" />
+                    </Grid>
 
-                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Textfield name="pledgeitems" label="Items" />
+                    </Grid>
 
-                  <Grid item xs={12}>
-                    <Typography variant="h4" component="h1"> Create Pledge </Typography>
+                    <Grid item xs={12}>
+                      <Button variant="contained" color="primary" type="submit">
+                        {" "}
+                        Create Pledge{" "}
+                      </Button>
+                    </Grid>
                   </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield name="location" label="Location" />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield name="pledgeitems" label="Items" />
-                  </Grid>
-
-
-                  <Grid item xs={12}>
-                    <Button variant="contained" color="primary" type="submit"> Create Pledge </Button>
-                  </Grid>
-
-                </Grid>
-              </div>
-                </Form>
+                </div>
+              </Form>
             </Formik>
           </div>
         </Container>
