@@ -62,6 +62,11 @@ function Recipient () {
 }
 , [requests]);
 
+let deleteRequest = async (id) => {
+    await axios.delete(`http://localhost:3001/requests/${id}`);
+    loadRequests();
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={-2} component={Paper}>
@@ -113,7 +118,8 @@ function Recipient () {
                             <TableCell align="right">Location</TableCell>
                             <TableCell align="right">Date Requested</TableCell>
                             <TableCell align="center">Expiration</TableCell>
-                            <TableCell align="center">Actions</TableCell>
+                            <TableCell align="center">Item</TableCell>
+                            <TableCell align="center">Quantity</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -137,9 +143,15 @@ function Recipient () {
                                 <TableCell align="right">
                                     {request.request_expiration}
                                 </TableCell>
+                                <TableCell align="right">
+                                    {request.request_item}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_item_quant}
+                                </TableCell>
                                 <TableCell align="center">
-                                    <Button variant="contained">
-                                        View Items
+                                    <Button variant="contained" onClick={() => deleteRequest(request.request_id)}>
+                                        Archive
                                     </Button>
                                 </TableCell>
                             </TableRow>
