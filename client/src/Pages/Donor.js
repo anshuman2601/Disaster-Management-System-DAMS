@@ -112,7 +112,8 @@ function Donor () {
                             <TableCell align="right">Location</TableCell>
                             <TableCell align="right">Date Requested</TableCell>
                             <TableCell align="center">Expiration</TableCell>
-                            <TableCell align="center">Actions</TableCell>
+                            <TableCell align="center">Item</TableCell>
+                            <TableCell align="center">Quantity</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -136,10 +137,11 @@ function Donor () {
                                 <TableCell align="right">
                                     {request.request_expiration}
                                 </TableCell>
-                                <TableCell align="center">
-                                    <Button variant="contained">
-                                        View Items
-                                    </Button>
+                                <TableCell align="right">
+                                    {request.request_item}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_item_quant}
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -29,10 +29,10 @@ function Pledge() {
         loadPledges();
     }
     // Function to edit a pledge
-    let editPledge = async (id) => {
-        await axios.put(`http://localhost:3001/pledges/${id}`);
-        loadPledges();
-    }
+    // let editPledge = async (id) => {
+    //     await axios.put(`http://localhost:3001/pledges/${id}`);
+    //     loadPledges();
+    // }
     
 
     return (
@@ -48,6 +48,8 @@ function Pledge() {
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell align="right">Pledge Location</TableCell>
+                                <TableCell align="right">Item</TableCell>
+                                <TableCell align="right">Quantity</TableCell>
                                 <TableCell align="center">Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -58,12 +60,11 @@ function Pledge() {
                                         {pledge.pledge_id}
                                     </TableCell>
                                     <TableCell align="right">{pledge.pledge_location}</TableCell>
+                                    <TableCell align="right">{pledge.pledge_item}</TableCell>
+                                    <TableCell align="right">{pledge.pledge_item_quant}</TableCell>
                                     <TableCell align="center">
                                         <Button size="small" variant="outlined" color="error" onClick={() => deletePledge(pledge.pledge_id)}>
                                             Delete
-                                        </Button>
-                                        <Button size="small" variant="outlined" color="secondary" onClick={() => navigate("/pledgeitems")}>
-                                            View Items
                                         </Button>
                                     </TableCell>
                                 </TableRow>

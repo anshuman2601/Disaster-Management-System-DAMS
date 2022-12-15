@@ -13,12 +13,14 @@ function CreatePledge() {
 
   const initialValues = {
     pledge_location: "",
-    pledge_items: "",
+    pledge_item: "",
+    pledge_quant: ""
   };
 
   const validationSchema = Yup.object().shape({
-    pledge_location: Yup.string().min(1).max(20).required("name is required"),
-    pledge_items: Yup.string().min(1).max(30).required("short description is required")
+    pledge_location: Yup.string().required("name is required"),
+    pledge_item: Yup.string().required("item is required"),
+    pledge_quant: Yup.string().required("quantity is required")
   })
 
 
@@ -52,11 +54,15 @@ function CreatePledge() {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield name="location" label="Location" />
+                    <Textfield name="pledge_location" label="Location" />
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield name="pledgeitems" label="Items" />
+                    <Textfield name="pledge_item" label="Item" />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Textfield name="pledge_quant" label="Quantity" />
                   </Grid>
 
 
