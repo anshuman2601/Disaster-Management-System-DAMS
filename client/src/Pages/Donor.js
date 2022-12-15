@@ -16,19 +16,22 @@ import Pledge from "./Pledge";
 import Response from "./Response";
 import Map from "./Map";
 
-function Donor () {
+function Donor() {
   const navigate = useNavigate();
   const [disasters, setDisasters] = useState([]);
   const [requests, setRequests] = useState([]);
   const [disasterNames, setDisasterNames] = useState({});
   const [disasterLocations, setDisasterLocations] = useState({});
-    
+
   async function loadRequests() {
-      const result = await axios.get("http://localhost:3001/requests/").then((result) => {
-          setRequests(result.data);
-          //console.log("Result", requests);
-      }).catch((err) => {
-            console.log(err);
+    const result = await axios
+      .get("http://localhost:3001/requests/")
+      .then((result) => {
+        setRequests(result.data);
+        //console.log("Result", requests);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -50,110 +53,96 @@ function Donor () {
   }, []);
 
   useEffect(() => {
-    requests.forEach( ({ request_disaster_id, request_id }) => {
-        axios.get(`http://localhost:3001/disasters/${request_disaster_id}`)
-        .then(res => {
-            setDisasterNames(disasterNames => ({
-                ...disasterNames, [request_id]: res.data.disaster_name,
-            }));
-            setDisasterLocations(disasterLocations => ({
-                ...disasterLocations, [request_id]: res.data.disaster_location,
-            }));
-        })
+    requests.forEach(({ request_disaster_id, request_id }) => {
+      axios.get(`http://localhost:3001/disasters/${request_disaster_id}`).then((res) => {
+        setDisasterNames((disasterNames) => ({
+          ...disasterNames,
+          [request_id]: res.data.disaster_name,
+        }));
+        setDisasterLocations((disasterLocations) => ({
+          ...disasterLocations,
+          [request_id]: res.data.disaster_location,
+        }));
+      });
     });
-}
-, [requests]);
-    return (
-        <Box sx={{ flexGrow: 1 }}>
-    <Grid container spacing={-2} component={Paper}>
-      <TableContainer align="center" component={Paper}>
-        <Typography variant="h3">Donor Page</Typography>
-        <Typography variant="h4">Disasters</Typography>
-        
-        <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="right">Event</TableCell>
-              <TableCell align="right">Date of Occurrence</TableCell>
-              <TableCell align="right">Location</TableCell>
-              <TableCell align="right">Status</TableCell>
-              
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {disasters.map((disaster, index) => (
-              <TableRow key={disaster.id}>
-                <TableCell component="th" scope="row">
-                  {disaster.disaster_id}
-                </TableCell>
-                <TableCell align="right">{disaster.disaster_name}</TableCell>
-                <TableCell align="right">{disaster.disaster_date}</TableCell>
-                <TableCell align="right">{disaster.disaster_location}</TableCell>
-                <TableCell align="right">{disaster.disaster_status}</TableCell>
-                
+  }, [requests]);
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={-2} component={Paper}>
+        <TableContainer align="center" component={Paper}>
+          <Typography variant="h3">Donor Page</Typography>
+          <Typography variant="h4">Disasters</Typography>
+
+          <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">Event</TableCell>
+                <TableCell align="right">Date of Occurrence</TableCell>
+                <TableCell align="right">Location</TableCell>
+                <TableCell align="right">Status</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Grid>
+            </TableHead>
+            <TableBody>
+              {disasters.map((disaster, index) => (
+                <TableRow key={disaster.id}>
+                  <TableCell component="th" scope="row">
+                    {disaster.disaster_id}
+                  </TableCell>
+                  <TableCell align="right">{disaster.disaster_name}</TableCell>
+                  <TableCell align="right">{disaster.disaster_date}</TableCell>
+                  <TableCell align="right">{disaster.disaster_location}</TableCell>
+                  <TableCell align="right">{disaster.disaster_status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
 
-    <Grid container spacing={-2} component={Paper}>
-            <TableContainer align="center" component={Paper}>
-                <Typography variant="h4">Requests</Typography>
-                
-                <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell align="right">User</TableCell>
-                            <TableCell align="right">Disaster</TableCell>
-                            <TableCell align="right">Location</TableCell>
-                            <TableCell align="right">Date Requested</TableCell>
-                            <TableCell align="center">Expiration</TableCell>
-                            <TableCell align="center">Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {requests.map((request, index) => (
-                            <TableRow key={request.id}>
-                                <TableCell component="th" scope="row">
-                                    {request.request_id}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_username}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {disasterNames[request.request_id]}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {disasterLocations[request.request_id]}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_date}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_expiration}
-                                </TableCell>
-                                <TableCell align="center">
-                                    <Button variant="contained">
-                                        View Items
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-    </Grid>
+      <Grid container spacing={-2} component={Paper}>
+        <TableContainer align="center" component={Paper}>
+          <Typography variant="h4">Requests</Typography>
 
-    <Grid container component={Paper}>
+          <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">User</TableCell>
+                <TableCell align="right">Disaster</TableCell>
+                <TableCell align="right">Location</TableCell>
+                <TableCell align="right">Date Requested</TableCell>
+                <TableCell align="center">Expiration</TableCell>
+                <TableCell align="center">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {requests.map((request, index) => (
+                <TableRow key={request.id}>
+                  <TableCell component="th" scope="row">
+                    {request.request_id}
+                  </TableCell>
+                  <TableCell align="right">{request.request_username}</TableCell>
+                  <TableCell align="right">{disasterNames[request.request_id]}</TableCell>
+                  <TableCell align="right">{disasterLocations[request.request_id]}</TableCell>
+                  <TableCell align="right">{request.request_date}</TableCell>
+                  <TableCell align="right">{request.request_expiration}</TableCell>
+                  <TableCell align="center">
+                    <Button variant="contained">View Items</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+
+      <Grid container component={Paper}>
         <Pledge />
-    </Grid>
-    <Map />
-  </Box>
-    );
+      </Grid>
+      <Map />
+    </Box>
+  );
 }
 
 export default Donor;

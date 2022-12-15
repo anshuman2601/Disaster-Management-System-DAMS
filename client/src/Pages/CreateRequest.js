@@ -124,22 +124,32 @@ function CreateRequest() {
                       </Typography>
                     </Grid>
 
-                                        <Grid item xs={12}>
-                                        <FormControl fullWidth>
-                                              <InputLabel id="disaster_id" name="disaster_id">Disaster</InputLabel>
-                                                <Select label="disaster_id" id="disaster_id" value={selectedDisaster} onChange={disasterSelectionHandler}>
-                                                    {disasters.map((disaster) => (
-                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id.toString()}>
-                                                        {disaster.disaster_name}
-                                                        </MenuItem>
-                                                    ))}
-                                                </Select>
-                                            </FormControl>
-                                        </Grid>
-                                        
-                                        <Grid item xs={12}>
-                                            <Textfield type="date" name="expiration_date" label="" />
-                                        </Grid>
+                    <Grid item xs={12}>
+                      <FormControl fullWidth>
+                        <InputLabel id="disaster_id" name="disaster_id">
+                          Disaster
+                        </InputLabel>
+                        <Select
+                          label="disaster_id"
+                          id="disaster_id"
+                          value={selectedDisaster}
+                          onChange={disasterSelectionHandler}
+                        >
+                          {disasters.map((disaster) => (
+                            <MenuItem
+                              key={disaster.disaster_id}
+                              value={disaster.disaster_id.toString()}
+                            >
+                              {disaster.disaster_name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <Textfield type="date" name="expiration_date" label="" />
+                    </Grid>
 
                     <Grid item xs={12}>
                       <FormControl fullWidth>
