@@ -6,40 +6,32 @@ import { useNavigate } from "react-router-dom";
 import parse from "date-fns/parse";
 import Button from "../Components/Button";
 import Textfield from "../Components/Textfield";
-//import Select from "../Components/Select";
-import {
-  Grid,
-  Container,
-  Typography,
-  Select,
-  FormControl,
-  InputLabel,
-  MenuItem,
-} from "@mui/material";
+import Select from "../Components/Select"; // Select,
+import { Grid, Container, Typography,  FormControl, InputLabel, MenuItem } from "@mui/material";
 
 function CreateRequest() {
-  const initialValues = {
-    disaster_id: "",
-    expiration_date: "",
-    item_id: "",
-  };
+    const initialValues = {
+        disaster_id: "",
+        expiration_date: "",
+        item_name: "",
+        quantity: ""
+      };
 
-  const validationSchema = Yup.object().shape({
-    disaster_id: Yup.string().required("disaster id required"),
-    item_id: Yup.string().required("item id is required"),
-    expiration_date: Yup.date()
-      .required("Date is required")
-      .transform(function (value, originalValue) {
-        if (this.isType(value)) {
-          return value;
-        }
-        const result = parse(originalValue, "dd.MM.yyyy", new Date());
-        return result;
-      })
-      .typeError("please enter a valid date")
-      .required()
-      .min("1969-11-13", "Date is too early"),
-  });
+    const validationSchema = Yup.object().shape({
+        disaster_id: Yup.string().required("disaster id required"),
+        item_name: Yup.string().required("item name is required"),
+        quantity: Yup.string().required("quantity is required"),
+        expiration_date: Yup.date().required("Date is required").transform(function (value, originalValue) {
+            if (this.isType(value)) {
+                return value;
+            }
+            const result = parse(originalValue, "dd.MM.yyyy", new Date());
+                return result;
+        })
+        .typeError("please enter a valid date")
+        .required()
+        .min("1969-11-13", "Date is too early"),
+    });
 
   const navigate = useNavigate();
   const navPages = () => {
@@ -76,10 +68,21 @@ function CreateRequest() {
       });
   }
 
-  async function submitRequest(data) {
-    async function requestPost(data) {
-      let { data: response } = await axios.post("http://localhost:3001/requests/create", data);
-      return response;
+    async function submitRequest(data) {
+        // async function requestItemPost(data) {
+        //     let { data: response } = await axios.post("http://localhost:3001/request_items/create", data);
+        //     return response;
+        // }
+
+        async function requestPost(data) {
+            let { data: response } = await axios.post("http://localhost:3001/requests/create", data);
+            return response;
+        }
+        console.log(data);
+        let response2 = await requestPost(data);
+        if (response2 === "SUCCESS") {
+            navPages();
+        }
     }
     console.log(data);
     let response = await requestPost(data);
@@ -124,52 +127,47 @@ function CreateRequest() {
                       </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <FormControl fullWidth>
-                        <InputLabel id="disaster_id" name="disaster_id">
-                          Disaster
-                        </InputLabel>
-                        <Select
-                          label="disaster_id"
-                          id="disaster_id"
-                          value={selectedDisaster}
-                          onChange={disasterSelectionHandler}
-                        >
-                          {disasters.map((disaster) => (
-                            <MenuItem
-                              key={disaster.disaster_id}
-                              value={disaster.disaster_id.toString()}
-                            >
-                              {disaster.disaster_name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Grid>
+                                        {/* <Grid item xs={12}>
+                                        <FormControl fullWidth>
+                                              <InputLabel id="disaster_id" name="disaster_id">Disaster</InputLabel>
+                                                <Select label="disaster_id" id="disaster_id" value={selectedDisaster} onChange={disasterSelectionHandler}>
+                                                    {disasters.map((disaster) => (
+                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id.toString()}>
+                                                        {disaster.disaster_name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                        </Grid> */}
+                                        <Grid item xs={12}>
+                                            <Textfield name="disaster_id" label="Enter Disaster ID" />
+                                        </Grid>
 
                     <Grid item xs={12}>
                       <Textfield type="date" name="expiration_date" label="" />
                     </Grid>
 
-                    <Grid item xs={12}>
-                      <FormControl fullWidth>
-                        <InputLabel id="item_id" name="item_id">
-                          Item
-                        </InputLabel>
-                        <Select
-                          label="item_id"
-                          id="item_id"
-                          value={selectedItem}
-                          onChange={itemSelectionHandler}
-                        >
-                          {items.map((item) => (
-                            <MenuItem key={item.item_id} value={item.item_id}>
-                              {item.item_name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Grid>
+                                        <Grid item xs={12}>
+                                            <Textfield name="item_name" label="Enter Item name" />
+                                        </Grid>
+
+                                        <Grid item xs={12}>
+                                            <Textfield name="quantity" label="Enter Item quantity" />
+                                        </Grid>
+
+                                        {/* <Grid item xs={12}>
+                                            <FormControl fullWidth>
+                                              <InputLabel id="item_id" name="item_id">Item</InputLabel>
+                                                <Select label="item_id" id="item_id" value={selectedItem} onChange={itemSelectionHandler}>
+                                                    {items.map((item) => (
+                                                        <MenuItem key={item.item_id} value={item.item_id}>
+                                                        {item.item_name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                            </Grid>                                    */}
+                                     
 
                     <Grid item xs={12}>
                       <Button variant="primary" type="submit">
