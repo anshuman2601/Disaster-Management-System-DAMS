@@ -38,7 +38,7 @@ router.post("/create", async (req, res) => {
 
   const request = await requests.create({
     request_id: id,
-    request_username: "Zach",
+    request_username: "John",
     request_disaster_id: disaster_id,
     request_date: Date.now(),
     request_expiration: expiration_date,

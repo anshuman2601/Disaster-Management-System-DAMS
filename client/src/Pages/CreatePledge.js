@@ -13,13 +13,15 @@ function CreatePledge() {
 
   const initialValues = {
     pledge_location: "",
-    pledge_items: "",
+    pledge_item: "",
+    pledge_quant: ""
   };
 
   const validationSchema = Yup.object().shape({
-    pledge_location: Yup.string().min(1).max(20).required("name is required"),
-    pledge_items: Yup.string().min(1).max(30).required("short description is required"),
-  });
+    pledge_location: Yup.string().required("Your location is required"),
+    pledge_item: Yup.string().required("item is required"),
+    pledge_quant: Yup.string().required("quantity is required")
+  })
 
   // create a function to submit the data to the database using axios and navigate to the home page after the data is posted
   async function submitPledge(data) {
@@ -70,8 +72,27 @@ function CreatePledge() {
                       </Button>
                     </Grid>
                   </Grid>
-                </div>
-              </Form>
+
+                  <Grid item xs={12}>
+                    <Textfield name="pledge_location" label="Location" />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Textfield name="pledge_item" label="Item" />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Textfield name="pledge_quant" label="Quantity" />
+                  </Grid>
+
+
+                  <Grid item xs={12}>
+                    <Button variant="contained" color="primary" type="submit"> Create Pledge </Button>
+                  </Grid>
+
+                </Grid>
+              </div>
+                </Form>
             </Formik>
           </div>
         </Container>

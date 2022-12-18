@@ -33,10 +33,10 @@ function CreateRequest() {
         .min("1969-11-13", "Date is too early"),
     });
 
-  const navigate = useNavigate();
-  const navPages = () => {
-    navigate("/");
-  };
+    const navigate = useNavigate();
+    const navPages = () => {
+        navigate("/recipient")
+    }
 
   const [items, setItems] = useState([]);
   const [disasters, setDisasters] = useState([]);
@@ -127,18 +127,7 @@ function CreateRequest() {
                       </Typography>
                     </Grid>
 
-                                        {/* <Grid item xs={12}>
-                                        <FormControl fullWidth>
-                                              <InputLabel id="disaster_id" name="disaster_id">Disaster</InputLabel>
-                                                <Select label="disaster_id" id="disaster_id" value={selectedDisaster} onChange={disasterSelectionHandler}>
-                                                    {disasters.map((disaster) => (
-                                                        <MenuItem key={disaster.disaster_id} value={disaster.disaster_id.toString()}>
-                                                        {disaster.disaster_name}
-                                                        </MenuItem>
-                                                    ))}
-                                                </Select>
-                                            </FormControl>
-                                        </Grid> */}
+                                        
                                         <Grid item xs={12}>
                                             <Textfield name="disaster_id" label="Enter Disaster ID" />
                                         </Grid>
@@ -155,19 +144,7 @@ function CreateRequest() {
                                             <Textfield name="quantity" label="Enter Item quantity" />
                                         </Grid>
 
-                                        {/* <Grid item xs={12}>
-                                            <FormControl fullWidth>
-                                              <InputLabel id="item_id" name="item_id">Item</InputLabel>
-                                                <Select label="item_id" id="item_id" value={selectedItem} onChange={itemSelectionHandler}>
-                                                    {items.map((item) => (
-                                                        <MenuItem key={item.item_id} value={item.item_id}>
-                                                        {item.item_name}
-                                                        </MenuItem>
-                                                    ))}
-                                                </Select>
-                                            </FormControl>
-                                            </Grid>                                    */}
-                                     
+                                    
 
                     <Grid item xs={12}>
                       <Button variant="primary" type="submit">

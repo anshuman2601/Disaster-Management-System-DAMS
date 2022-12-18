@@ -100,9 +100,56 @@ function Donor() {
         </TableContainer>
       </Grid>
 
-      <Grid container spacing={-2} component={Paper}>
-        <TableContainer align="center" component={Paper}>
-          <Typography variant="h4">Requests</Typography>
+    <Grid container spacing={-2} component={Paper}>
+            <TableContainer align="center" component={Paper}>
+                <Typography variant="h4">Requests</Typography>
+                
+                <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell align="right">User</TableCell>
+                            <TableCell align="right">Disaster</TableCell>
+                            <TableCell align="right">Location</TableCell>
+                            <TableCell align="right">Date Requested</TableCell>
+                            <TableCell align="center">Expiration</TableCell>
+                            <TableCell align="center">Item</TableCell>
+                            <TableCell align="center">Quantity</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {requests.map((request, index) => (
+                            <TableRow key={request.id}>
+                                <TableCell component="th" scope="row">
+                                    {request.request_id}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_username}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {disasterNames[request.request_id]}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {disasterLocations[request.request_id]}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_date}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_expiration}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_item}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {request.request_item_quant}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+    </Grid>
 
           <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
             <TableHead>
