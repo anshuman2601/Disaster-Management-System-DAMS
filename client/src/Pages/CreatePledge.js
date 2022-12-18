@@ -18,7 +18,7 @@ function CreatePledge() {
   };
 
   const validationSchema = Yup.object().shape({
-    pledge_location: Yup.string().required("name is required"),
+    pledge_location: Yup.string().required("Your location is required"),
     pledge_item: Yup.string().required("item is required"),
     pledge_quant: Yup.string().required("quantity is required")
   })
